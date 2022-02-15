@@ -1,0 +1,1088 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favico.jpg">
+  <link rel="icon" href="/img/favico.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Smooth">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本篇文章将对git在工作和学习中需要用到的大部分常用指令作详细解答，本文总结自廖雪峰老师的文档。觉得有用的友友们可以转发本文支持一下，你们的支持就是我最大的动力">
+<meta property="og:type" content="article">
+<meta property="og:title" content="长达万字的git常用指令总结！！！适合小白及在工作中想要对git基本指令有所了解的人群(建议收藏)">
+<meta property="og:url" content="http://example.com/2022/02/15/%E9%95%BF%E8%BE%BE%E4%B8%87%E5%AD%97%E7%9A%84git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Smooth个人博客">
+<meta property="og:description" content="本篇文章将对git在工作和学习中需要用到的大部分常用指令作详细解答，本文总结自廖雪峰老师的文档。觉得有用的友友们可以转发本文支持一下，你们的支持就是我最大的动力">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/git.webp">
+<meta property="article:published_time" content="2022-02-15T10:59:15.000Z">
+<meta property="article:modified_time" content="2022-02-15T11:15:54.283Z">
+<meta property="article:author" content="Smooth">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="协作工具">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/git.webp">
+  
+  
+  <title>长达万字的git常用指令总结！！！适合小白及在工作中想要对git基本指令有所了解的人群(建议收藏) - Smooth个人博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading2.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/git.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          <span id="subtitle" title="长达万字的git常用指令总结！！！适合小白及在工作中想要对git基本指令有所了解的人群(建议收藏)">
+            
+          </span>
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Smooth
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-15 18:59" pubdate>
+          2022年2月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          10k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          85 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">长达万字的git常用指令总结！！！适合小白及在工作中想要对git基本指令有所了解的人群(建议收藏)</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2022年2月15日 晚上
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p><strong>大家好，我是Smooth，一名大二的前端爱好者，目标成为一名高级前端开发工程师</strong></p>
+</blockquote>
+<p><strong>本篇文章将对git在工作和学习中需要用到的大部分常用指令作详细解答</strong></p>
+<p>本文总结自廖雪峰老师的文档<br/><br/><br/></p>
+<p><a href="#1">1.git的初步认识</a></p>
+<p><a href="#2">2.git add与git commit</a></p>
+<p><a href="#3">3.git status和git diff</a></p>
+<p><a href="#4">4.版本回退git reset与查看日志git log&#x2F;git relog</a></p>
+<p><a href="#5">5.撤销修改git checkout及git reset(再提及)</a></p>
+<p><a href="#6">6.删除文件</a></p>
+<p><a href="#7">7.分支管理 branch与switch</a></p>
+<p><a href="#8">8.标签的使用 git tag与git show</a></p>
+<ul>
+<li><a href="#11">创建标签</a></li>
+<li><a href="#12">查看标签</a></li>
+<li><a href="#13">删除标签</a></li>
+<li><a href="#14">推送标签到远程库</a></li>
+</ul>
+<p><a href="#9">9.远程仓库的连接</a></p>
+<ul>
+<li><a href="#15">与远程库建立连接</a></li>
+<li><a href="#16">向远程库输出本地库中的文件</a></li>
+<li><a href="#17">删除远程库</a></li>
+</ul>
+<p><a href="#10">10.与Github或Gitee建立文件传输机制</a><br><br></br><br><br></br></p>
+<h1 id="1-git的初步认识"><a href="#1-git的初步认识" class="headerlink" title="1.git的初步认识"></a><div id="1">1.git的初步认识</div></h1><p>首先，Git在本地中具有工作区、暂存区与本地仓库区<br>平时我们修改代码时叫做<strong>工作区</strong>，当你完成项目到某个进度想保存时，那么便可将代码存到<strong>暂存区</strong>，暂存区类似于word文件中的自动保存功能，当你确认暂存区中的代码没问题要保存时，便可将代码由<strong>暂存区</strong>转到<strong>本地仓库区</strong>。</p>
+<p>那么对于一个目录，如何将它变成Git可以管理的仓库呢？(本地仓库，还不是远程仓库)<br>答案是：在当前目录下运行<code>git init</code>指令创建一个版本库，然后这个目录里面的所有文件就可以被Git管理起来，每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。<br>可以发现当前目录下多了一个.git的目录，这个目录是Git来跟踪管理版本库的，没事千万不要手动修改这个目录里面的文件，不然改乱了，就把Git仓库给破坏了，如果你没有看到.git目录，那是因为这个目录默认是隐藏的。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/800f0baaf4684330b96abd5d325f6133~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload alt="在这里插入图片描述"></p>
+<h1 id="2-git-add与git-commit"><a href="#2-git-add与git-commit" class="headerlink" title="2.git add与git commit"></a><div id="2">2.git add与git commit</div></h1><p>由于Github使用面更广，后续演示都是针对Github来展开</p>
+<p>总体来说，把一个文件放到本地Git仓库只需要两步。</p>
+<ul>
+<li><p>第一步，用命令<code>git add</code>告诉Git，把某个文件从工作区添加到暂存区。</p>
+</li>
+<li><p><code>git add &lt;file&gt;</code></p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm">$ git <span class="hljs-keyword">add</span> readme.txt<span class="hljs-comment">//将readme.txt文件添加到暂存区</span><br></code></pre></td></tr></table></figure>
+<p>执行上面的命令，如果没有任何显示，代表正确运行。<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9a3e424388784d748551d0fb09b86588~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload alt="在这里插入图片描述"></p>
+</li>
+<li><p>第二步，用命令<code>git commit</code>告诉Git，将暂存区中所有文件一次性从暂存区添加到本地仓库区。</p>
+</li>
+<li><p><code>git commit -m &lt;message&gt;</code></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">$ git commit -m <span class="hljs-string">&quot;wrote a readme file&quot;</span><span class="hljs-regexp">//</span>将readme.txt文件添加到本地仓库<br></code></pre></td></tr></table></figure>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2b2759aacb994ccdab5573ed8dbb0b64~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<p>:boom:<strong>详解</strong>:boom:<br>.<br>简单解释一下git commit命令，-m后面输入的是本次提交的说明，可以输入任意内容，当然最好是有意义的，这样你就能从历史记录里方便地找到改动记录。git commit命令执行成功后会告诉你，1 file changed：1个文件被改动（我们新添加的readme.txt文件）；2 insertions：插入了两行内容（readme.txt有两行内容）。</p>
+<p>为什么Git添加文件需要<code>add</code>，<code>commit</code>一共两步呢？因为<code>commit</code>可以一次提交很多文件，所以你可以多次<code>add</code>不同的文件，比如：</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span> git add file1.txt<br><span class="hljs-symbol">$</span> git add file2.txt file3.txt<span class="hljs-comment">//一次add命令可以有多个文件，用空格分隔</span><br><span class="hljs-symbol">$</span> git commit -m <span class="hljs-string">&quot;add 3 files.&quot;</span><br></code></pre></td></tr></table></figure>
+<p><br></br></p>
+<h1 id="3-git-status和git-diff"><a href="#3-git-status和git-diff" class="headerlink" title="3.git status和git diff"></a><div id="3">3.git status和git diff</div></h1><p><code>git status</code>命令能查看当前目录中所有文件的代码状态，如果文件是<strong>红色</strong>那说明文件被修改过但还没将此次修改提交。<br><code>git diff</code>命令顾名思义就是查看difference，显示的格式正是Unix通用的diff格式，<code>git diff</code>后面<strong>跟文件名称</strong>是是查看工作区（working tree）与暂存区（index）的差别的</p>
+<p><br></br></p>
+<h1 id="4-版本回退git-reset与查看日志git-log-x2F-git-relog"><a href="#4-版本回退git-reset与查看日志git-log-x2F-git-relog" class="headerlink" title="4.版本回退git reset与查看日志git log&#x2F;git relog"></a><div id="4">4.版本回退git reset与查看日志git log&#x2F;git relog</div></h1><p>你不断对文件进行修改，然后不断提交修改到版本库里，就好比玩游戏时，每通过一关就会自动把游戏状态存盘，如果某一关没过去，你还可以选择<strong>读取前一关的状态</strong>。有些时候，在打Boss之前，你会<strong>手动存盘</strong>，以便万一打Boss失败了，可以从<strong>最近的地方</strong>重新开始。Git也是一样，每当你觉得文件修改到一定程度的时候，就可以“保存一个快照”，<strong>这个快照在Git中被称为commit</strong>。一旦你把文件改乱了，或者误删了文件，还可以<strong>从最近的一个commit恢复</strong>，然后继续工作，而不是把几个月的工作成果全部丢失，这就是版本回退。</p>
+<p>假设对于readme.txt文件，我已经提交了三个版本的修改，而对于<code>git commit -m &lt;message&gt;</code>，-m后面输入的本次提交说明如下：</p>
+<p>版本1：wrote a readme file<br>版本2：add distributed<br>版本3：append GPL(最新版本)</p>
+<ul>
+<li>git log<br>当然，在实际工作中，我们脑子里怎么可能记得一个几千行的文件每次都改了什么内容，不然要版本控制系统Git干什么。版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用<code>git log</code>命令查看：<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs llvm">$ git log<br>commit <span class="hljs-number">1094</span>adb<span class="hljs-number">7</span>b<span class="hljs-number">9</span>b<span class="hljs-number">3807259</span>d<span class="hljs-number">8</span>cb<span class="hljs-number">349e7</span>df<span class="hljs-number">1</span>d<span class="hljs-number">4</span>d<span class="hljs-number">6477073</span> (HEAD -&gt; master)//最新的一次修改<br>Author: Michael Liao &lt;askxuefeng<span class="hljs-title">@gmail.com</span>&gt;<br>Date:   Fri May <span class="hljs-number">18</span> <span class="hljs-number">21</span>:<span class="hljs-number">06</span>:<span class="hljs-number">15</span> <span class="hljs-number">2018</span> +<span class="hljs-number">0800</span><br><br>    append GPL<br><br>commit e<span class="hljs-number">475</span>afc<span class="hljs-number">93</span><span class="hljs-keyword">c</span><span class="hljs-number">209</span>a<span class="hljs-number">690</span><span class="hljs-keyword">c</span><span class="hljs-number">39</span><span class="hljs-keyword">c</span><span class="hljs-number">13</span>a<span class="hljs-number">46716e8</span>fa<span class="hljs-number">000</span><span class="hljs-keyword">c</span><span class="hljs-number">366</span><br>Author: Michael Liao &lt;askxuefeng<span class="hljs-title">@gmail.com</span>&gt;<br>Date:   Fri May <span class="hljs-number">18</span> <span class="hljs-number">21</span>:<span class="hljs-number">03</span>:<span class="hljs-number">36</span> <span class="hljs-number">2018</span> +<span class="hljs-number">0800</span><br><br>    <span class="hljs-keyword">add</span> distributed<br><br>commit eaadf<span class="hljs-number">4e385</span>e<span class="hljs-number">865</span>d<span class="hljs-number">25</span><span class="hljs-keyword">c</span><span class="hljs-number">48e7</span>ca<span class="hljs-number">9</span><span class="hljs-keyword">c</span><span class="hljs-number">8395</span><span class="hljs-keyword">c</span><span class="hljs-number">3</span>f<span class="hljs-number">7</span>dfaef<span class="hljs-number">0</span><br>Author: Michael Liao &lt;askxuefeng<span class="hljs-title">@gmail.com</span>&gt;<br>Date:   Fri May <span class="hljs-number">18</span> <span class="hljs-number">20</span>:<span class="hljs-number">59</span>:<span class="hljs-number">18</span> <span class="hljs-number">2018</span> +<span class="hljs-number">0800</span><br><br>    wrote a readme file<br></code></pre></td></tr></table></figure>
+如果嫌输出信息太多，看得眼花缭乱的，可以试试加上<code>--pretty=oneline</code>参数<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs llvm">$ git log --pretty<span class="hljs-operator">=</span>oneline<br><span class="hljs-number">1094</span>adb<span class="hljs-number">7</span>b<span class="hljs-number">9</span>b<span class="hljs-number">3807259</span>d<span class="hljs-number">8</span>cb<span class="hljs-number">349e7</span>df<span class="hljs-number">1</span>d<span class="hljs-number">4</span>d<span class="hljs-number">6477073</span> (HEAD -&gt; master) append GPL//最新的一次修改<br>e<span class="hljs-number">475</span>afc<span class="hljs-number">93</span><span class="hljs-keyword">c</span><span class="hljs-number">209</span>a<span class="hljs-number">690</span><span class="hljs-keyword">c</span><span class="hljs-number">39</span><span class="hljs-keyword">c</span><span class="hljs-number">13</span>a<span class="hljs-number">46716e8</span>fa<span class="hljs-number">000</span><span class="hljs-keyword">c</span><span class="hljs-number">366</span> <span class="hljs-keyword">add</span> distributed<br>eaadf<span class="hljs-number">4e385</span>e<span class="hljs-number">865</span>d<span class="hljs-number">25</span><span class="hljs-keyword">c</span><span class="hljs-number">48e7</span>ca<span class="hljs-number">9</span><span class="hljs-keyword">c</span><span class="hljs-number">8395</span><span class="hljs-keyword">c</span><span class="hljs-number">3</span>f<span class="hljs-number">7</span>dfaef<span class="hljs-number">0</span> wrote a readme file<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>:boom:友情提示：你看到的一大串类似1094adb…的是<strong>commit id（版本号）</strong>，你看到的commit id和我的肯定不一样，以你自己的为准。为什么commit id需要用这么一大串数字表示呢？因为Git是分布式的版本控制系统，后面我们还要研究多人在同一个版本库里工作，如果大家都用1，2，3……作为版本号，那肯定就冲突了。<strong>版本号没必要写全，前几位就可以了，Git会自动去找</strong><br><br></br><br>打算把readme.txt回退到上一个版本，也就是add distributed的那个版本，怎么做呢？<br>首先，<strong>Git必须知道当前版本是哪个版本，在Git中，用HEAD表示当前版本</strong>，也就是最新的提交1094adb…（注意我的提交ID和你的肯定不一样），上一个版本就是<code>HEAD^</code>，上上一个版本就是<code>HEAD^^</code>，当然往上100个版本写100个^比较容易数不过来，所以写成<code>HEAD~100</code>。</p>
+<ul>
+<li>git reset</li>
+</ul>
+<p>现在，我们要把当前版本append GPL回退到上一个版本add distributed，就可以使用<code>git reset</code></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">$ git <span class="hljs-keyword">reset</span> <span class="hljs-comment">--hard HEAD^//去上一个版本</span><br>HEAD <span class="hljs-keyword">is</span> now at e475afc <span class="hljs-keyword">add</span> distributed<br></code></pre></td></tr></table></figure>
+<p>也可以指定某个commit版本进行还原</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs maxima">$ git <span class="hljs-built_in">reset</span> --hard 1094a//指定commit版本前五位数为1094a的进行还原<br>HEAD <span class="hljs-built_in">is</span> now <span class="hljs-built_in">at</span> 83b0afe <span class="hljs-built_in">append</span> GPL<br></code></pre></td></tr></table></figure>
+
+<p>如果你忘记了commit版本号，可以通过<code>git reflog</code>来找，<code>git reflog</code>记录了你的每一次命令</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">$ git reflog<br>e475afc HEAD@&#123;<span class="hljs-number">1</span>&#125;: <span class="hljs-keyword">reset</span>: moving <span class="hljs-keyword">to</span> HEAD^<br><span class="hljs-number">1094</span>adb (HEAD -&gt; master) HEAD@&#123;<span class="hljs-number">2</span>&#125;: <span class="hljs-keyword">commit</span>: append GPL<br>e475afc HEAD@&#123;<span class="hljs-number">3</span>&#125;: <span class="hljs-keyword">commit</span>: <span class="hljs-keyword">add</span> distributed<br>eaadf4e HEAD@&#123;<span class="hljs-number">4</span>&#125;: <span class="hljs-keyword">commit</span> (initial): wrote a readme file<br></code></pre></td></tr></table></figure>
+
+<p>:boom:过程图示：<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c24650a5651e4811b10f1a851a2c2ba1~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload alt="在这里插入图片描述"><br>总结：</p>
+<ul>
+<li><code>HEAD</code>指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令<br><code>git reset --hard commit_id</code>。</li>
+<li>穿梭前，用<code>git log</code>可以查看提交历史，以便确定要回退到哪个版本。</li>
+<li>要重返未来，用<code>git reflog</code>查看命令历史，以便确定要回到未来的哪个版本。</li>
+</ul>
+<p><br></br></p>
+<h1 id="5-撤销修改git-checkout及git-reset-再提及"><a href="#5-撤销修改git-checkout及git-reset-再提及" class="headerlink" title="5.撤销修改git checkout及git reset(再提及)"></a><div id="5">5.撤销修改git checkout及git reset(再提及)</div></h1><ul>
+<li>撤销工作区的修改</li>
+</ul>
+<p>当你对工作区文件完成修改时，你可以选择<code>git add</code>提交到暂存区，也可以选择<code>git checkout</code>撤销此次修改</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs vim">$ git status<br>On branch master<br>Changes not staged <span class="hljs-keyword">for</span> commit:<br>  (use <span class="hljs-string">&quot;git add &lt;file&gt;...&quot;</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">update</span> what will <span class="hljs-keyword">be</span> committed)<br>  (use <span class="hljs-string">&quot;git checkout -- &lt;file&gt;...&quot;</span> <span class="hljs-keyword">to</span> discard <span class="hljs-keyword">changes</span> in working directory)<br><br>	modified:   readme.txt<br><br><span class="hljs-keyword">no</span> <span class="hljs-keyword">changes</span> added <span class="hljs-keyword">to</span> commit (use <span class="hljs-string">&quot;git add&quot;</span> <span class="hljs-built_in">and</span>/<span class="hljs-built_in">or</span> <span class="hljs-string">&quot;git commit -a&quot;</span>)<br></code></pre></td></tr></table></figure>
+<p>命令<code>git checkout -- readme.txt</code>意思就是，把<code>readme.txt</code>文件在工作区的修改全部撤销，<br>这里有两种情况：<br>一种是<code>readme.txt</code>自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；<br>一种是<code>readme.txt</code>已经添加到暂存区后，又作了修改，现在，撤销修改就回到上次提交到暂存区后的状态。<br>总之，就是让这个文件回到最近一次<code>git commit</code>或<code>git add</code>时的状态。</p>
+<ul>
+<li>撤销暂存区的修改</li>
+</ul>
+<p>当你对工作区文件完成修改且已经提交到了暂存区，你可以选择<code>git commit</code>提交到本地仓库区，也可以选择<code>git reset</code>把暂存区的修改撤销掉</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs aspectj">$ git reset HEAD readme.txt<span class="hljs-comment">//前文讲过，HEAD代表当前最新版本的文件</span><br>Unstaged changes <span class="hljs-keyword">after</span> reset:<br>M	readme.txt<br></code></pre></td></tr></table></figure>
+<h4 id="可知，git-reset命令既可以回退版本，也可以把暂存区的修改撤销到工作区。"><a href="#可知，git-reset命令既可以回退版本，也可以把暂存区的修改撤销到工作区。" class="headerlink" title="可知，git reset命令既可以回退版本，也可以把暂存区的修改撤销到工作区。"></a>可知，<code>git reset</code>命令既可以回退版本，也可以把暂存区的修改撤销到工作区。</h4><ul>
+<li>撤销本地仓库区的修改</li>
+</ul>
+<p>什么时候需要撤销本地仓库区的修改呢？那便是已经<code>git commit</code>到本地仓库了，那便回到前文的版本回退章节进行查阅，<code>git reset --hard 指定版本</code>即可</p>
+<p><br></br></p>
+<h1 id="6-删除文件"><a href="#6-删除文件" class="headerlink" title="6.删除文件"></a><div id="6">6.删除文件</div></h1><p>在Git中，删除也是一个修改操作<br>一般情况下，你通常直接在文件管理器中把没用的文件删了，或者用<code>rm &lt;file&gt;</code>命令删了</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> <span class="hljs-built_in">rm</span> test.txt<br></code></pre></td></tr></table></figure>
+<p>这个时候，Git知道你删除了文件，因此，<strong>工作区和版本库</strong>就不一致了</p>
+<ul>
+<li>如果你只是误删文件，那么可以通过<code>git checkout</code>指令恢复(撤销本次修改)<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">$ git checkout <span class="hljs-comment">-- test.txt</span><br></code></pre></td></tr></table></figure></li>
+<li>如果你确实要从版本库中删除该文件，那就用命令<code>git rm</code>删掉，再<code>git commit</code>提交本次修改<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stata">$ git <span class="hljs-keyword">rm</span> <span class="hljs-keyword">test</span>.txt<br><span class="hljs-keyword">rm</span> &#x27;<span class="hljs-keyword">test</span>.txt&#x27;<br><br>$ git commit -<span class="hljs-keyword">m</span> <span class="hljs-string">&quot;remove test.txt&quot;</span><br>[master d46f35e] remove <span class="hljs-keyword">test</span>.txt<br> 1 <span class="hljs-keyword">file</span> changed, 1 deletion(-)<br> delete mode 100644 <span class="hljs-keyword">test</span>.txt<br></code></pre></td></tr></table></figure>
+<font color="blue">小提示：先手动删除文件，然后使用git rm <file>和git add<file>效果是一样的。</font></li>
+</ul>
+<p><br></br></p>
+<h1 id="7-分支管理-branch与switch"><a href="#7-分支管理-branch与switch" class="headerlink" title="7.分支管理 branch与switch"></a><div id="7">7.分支管理 branch与switch</div></h1><p>分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码，如果立刻提交，<strong>由于代码还没写完，不完整的代码库会导致别人不能干活了</strong>。如果等代码全部写完再一次提交，又存在<strong>丢失每天进度的巨大风险</strong>。<br>现在有了分支，就不用怕了。你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再<strong>一次性合并到原来的分支上</strong>，这样，既安全，又不影响别人工作。<br><br></br></p>
+<p>:boom:<strong>用<code>branch</code>系列指令进行分支相关操作</strong></p>
+<ul>
+<li>查看分支</li>
+</ul>
+<p>用<code>git branch</code>命令列出本地仓库中所有分支，当前分支前面会标一个<code>*</code>号</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span> git branch<br><span class="hljs-comment">* dev</span><br>  master<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>创建与合并分支</li>
+<li>创建</li>
+</ul>
+<p><code>git branch dev</code>创建dev分支<br><code>git checkout dev</code>将HEAD指针切换到dev分支</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git branch dev<br><span class="hljs-variable">$ </span>git checkout dev<br>Switched to branch <span class="hljs-string">&#x27;dev&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>git checkout -b dev</code>  git checkout命令加上-b参数表示创建并切换，相当于上面两条命令<br>先创建dev分支，然后切换到dev分支</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">$ git checkout -b dev<br>Switched <span class="hljs-built_in">to</span> <span class="hljs-keyword">a</span> <span class="hljs-built_in">new</span> branch <span class="hljs-string">&#x27;dev&#x27;</span><br></code></pre></td></tr></table></figure>
+<p><br></br></p>
+<ul>
+<li>合并</li>
+</ul>
+<p>当你在<code>dev</code>分支上对<code>readme.txt</code>文件进行修改后，想将该修改合并到<code>master</code>主分支上时，两步：</p>
+<p>先<code>git checkout 分支名</code>切换到<code>master</code>分支</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">$ git checkout <span class="hljs-keyword">master</span><br><span class="hljs-title">Switched</span> to branch &#x27;<span class="hljs-literal">master</span>&#x27;<br></code></pre></td></tr></table></figure>
+<p>再<code>git merge 需要被合并的分支名</code>合并dev分支</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-symbol">$</span> git merge dev<br><span class="hljs-function"><span class="hljs-title">Updating</span></span> d46f35e..b17d20e<br>Fast-forward<br> readme.txt | <span class="hljs-number">1</span> +<br> <span class="hljs-number">1</span> <span class="hljs-keyword">file</span> changed, <span class="hljs-number">1</span> insertion(+)<br></code></pre></td></tr></table></figure>
+<p>合并完成后，就可以删除dev分支了，相较于<code>git checkout dev</code>添加分支，加个参数<code>-d</code>代表<code>delete</code></p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm">$ git <span class="hljs-keyword">branch </span>-d dev<br>Deleted <span class="hljs-keyword">branch </span>dev (was <span class="hljs-keyword">b17d20e).</span><br></code></pre></td></tr></table></figure>
+<p><br></br><br>:boom:<strong>用<code>switch</code>系列指令进行分支相关操作</strong></p>
+<p>注意到切换分支使用<code>git checkout &lt;branch&gt;</code>，而前面讲过的撤销修改则是<code>git checkout -- &lt;file&gt;</code>，同一个命令，有两种作用，确实有点令人迷惑。</p>
+<p>实际上，切换分支这个动作，用<code>switch</code>更容易理解。因此，最新版本的Git提供了新的<code>git switch</code>命令来切换分支：</p>
+<p>创建并切换到新的<code>dev</code>分支，可以使用：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">$ git <span class="hljs-keyword">switch</span> -c dev<span class="hljs-comment">//代替git checkout -b dev</span><br></code></pre></td></tr></table></figure>
+<p>直接切换到已有的<code>master</code>分支，可以使用：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript">$ git <span class="hljs-keyword">switch</span> master<span class="hljs-comment">//代替git branch dev</span><br></code></pre></td></tr></table></figure>
+<p><br></br><br>:boom:<strong>总结：</strong></p>
+<p>查看分支：<code>git branch</code></p>
+<p>创建分支：<code>git branch &lt;name&gt;</code></p>
+<p>切换分支：<code>git checkout &lt;name&gt;</code>或者<code>git switch &lt;name&gt;</code></p>
+<p>创建+切换分支：<code>git checkout -b &lt;name&gt;</code>或者<code>git switch -c &lt;name&gt;</code></p>
+<p>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
+<p>删除分支：<code>git branch -d &lt;name&gt;</code><br><br></br><br><br></br></p>
+<h1 id="8-标签的使用-git-tag与git-show"><a href="#8-标签的使用-git-tag与git-show" class="headerlink" title="8.标签的使用 git tag与git show"></a><div id="8">8.标签的使用 git tag与git show</div></h1><p>前言：为什么要使用标签？</p>
+<p>发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的commit版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。<br><strong>Git有commit版本号，为什么还要引入tag？</strong><br>因为commit版本是类似<code>6a5819e...</code>的一大串字符，不好找、辨别<br>如果将<code>6a5819e...</code>变成<code>v1.2</code>，就容易了很多<br><strong>所以，tag就是一个让人容易记住的有意义的名字，它跟某个commit版本号绑在一起。</strong><br><br></br></p>
+<p><br></br></p>
+<h2 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a><div id="11">创建标签</div></h2><p><code>git tag &lt;tagname&gt;</code><br><code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code><br><br></br></p>
+<ul>
+<li><p>给整个分支打标签<br>首先，<code>git branch</code>切换到需要打标签的分支上</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">$ git branch<br>* dev<br>  <span class="hljs-keyword">master</span><br><span class="hljs-title">$</span> git checkout <span class="hljs-keyword">master</span><br><span class="hljs-title">Switched</span> to branch &#x27;<span class="hljs-literal">master</span>&#x27;<br></code></pre></td></tr></table></figure>
+<p>然后<code>git tag &lt;tagname&gt;</code>打标签即可</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">$ git <span class="hljs-keyword">tag</span> <span class="hljs-title">v1</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>给过去的某个commit版本打标签<br><code>git tag &lt;tagname&gt; &lt;commid id&gt;</code></p>
+</li>
+</ul>
+<p><strong>默认标签是打在最新提交的commit上的，历史的找到历史提交的commit id，然后打上就可以了</strong></p>
+<p>比方说要对<code>add merge</code>这次提交打标签，它对应的commit id是<code>f52c633</code></p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">$ git <span class="hljs-keyword">tag</span> <span class="hljs-title">v0</span>.<span class="hljs-number">9</span> f52c633<br></code></pre></td></tr></table></figure>
+
+
+<p><br></br><br><strong>还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字</strong><br><code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot; &lt;commit id&gt;</code></p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">$ git <span class="hljs-keyword">tag</span> <span class="hljs-title">-a</span> v0.<span class="hljs-number">1</span> -m <span class="hljs-string">&quot;version 0.1 released&quot;</span> <span class="hljs-number">1094</span>adb<br></code></pre></td></tr></table></figure>
+<p><br></br><br></br></p>
+<h2 id="查看标签"><a href="#查看标签" class="headerlink" title="查看标签"></a><div id="12">查看标签</div></h2><p><code>git tag</code><br>可以用命令git tag查看所有标签</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">$ git <span class="hljs-keyword">tag</span><br><span class="hljs-title">v1</span>.<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<p><code>git show &lt;tagname&gt;</code><br>标签不是按时间顺序列出，而是按字母排序的。可以用<code>git show &lt;tagname&gt;</code>查看标签信息：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql">$ git <span class="hljs-keyword">show</span> v0<span class="hljs-number">.9</span><br><span class="hljs-keyword">commit</span> f52c63349bc3c1593499807e5c8e972b82c8f286 (tag: v0<span class="hljs-number">.9</span>)<br>Author: Michael Liao <span class="hljs-operator">&lt;</span>askxuefeng<span class="hljs-variable">@gmail</span>.com<span class="hljs-operator">&gt;</span><br><span class="hljs-type">Date</span>:   Fri May <span class="hljs-number">18</span> <span class="hljs-number">21</span>:<span class="hljs-number">56</span>:<span class="hljs-number">54</span> <span class="hljs-number">2018</span> <span class="hljs-operator">+</span><span class="hljs-number">0800</span><br><br>    <span class="hljs-keyword">add</span> <span class="hljs-keyword">merge</span><br><br>diff <span class="hljs-comment">--git a/readme.txt b/readme.txt</span><br>...<br></code></pre></td></tr></table></figure>
+<p><br></br><br></br></p>
+<h2 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a><div id="13">删除标签</div></h2><ul>
+<li><p>命令<code>git tag -d &lt;tagname&gt;</code>可以删除一个本地标签；</p>
+</li>
+<li><p>命令<code>git push origin :refs/tags/&lt;tagname&gt;</code>可以删除一个远程标签。</p>
+</li>
+</ul>
+<p><br></br></p>
+<h2 id="推送标签到远程库"><a href="#推送标签到远程库" class="headerlink" title="推送标签到远程库"></a><div id="14">推送标签到远程库</div></h2><ul>
+<li><p>命令<code>git push origin &lt;tagname&gt;</code>可以推送一个本地标签；</p>
+</li>
+<li><p>命令<code>git push origin --tags</code>可以推送全部未推送过的本地标签；</p>
+</li>
+</ul>
+<p><br></br><br></br></p>
+<h1 id="9-远程仓库的连接"><a href="#9-远程仓库的连接" class="headerlink" title="9.远程仓库的连接"></a><div id="9">9.远程仓库的连接</div></h1><p>目前广为人知的两个远程仓库有Github和Gitee(码云)</p>
+<p>Github：人气最高，人们普遍使用的一个国际化代码管理平台</p>
+<p>Gitee：使用GitHub时，国内的用户经常遇到的问题是访问速度太慢，有时候还会出现无法连接的情况<br>如果我们希望体验Git飞一般的速度，可以使用国内的Git托管服务——Gitee（gitee.com）</p>
+<p><strong>目标：<br>在本地创建了一个Git仓库后，又想在GitHub创建一个Git仓库，并且让这两个仓库进行远程同步。</strong></p>
+<p><br></br></p>
+<h3 id="与远程库建立连接"><a href="#与远程库建立连接" class="headerlink" title="与远程库建立连接"></a><div id="15">与远程库建立连接</div></h3><p><code>git remote add 远程仓库名字 git@github.com:远程仓库路径//远程仓库路径如下图</code></p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crystal"><span class="hljs-variable">$ </span>git remote add origin git<span class="hljs-variable">@github</span>.<span class="hljs-symbol">com:</span>michaelliao/learngit.git<br></code></pre></td></tr></table></figure>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7cc0ec8b103c4adc815373b73711e01f~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload alt="在这里插入图片描述"><br>建立好连接后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。<br><br></br></p>
+<h3 id="向远程库输出本地库中的文件"><a href="#向远程库输出本地库中的文件" class="headerlink" title="向远程库输出本地库中的文件"></a><div id="16">向远程库输出本地库中的文件</div></h3><p><code>git push -u 远程仓库名称 要推送的本地分支名称</code></p>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs ocaml">$ git push -u origin master<br><span class="hljs-type">Counting</span> objects: <span class="hljs-number">20</span>, <span class="hljs-keyword">done</span>.<br><span class="hljs-type">Delta</span> compression using up <span class="hljs-keyword">to</span> <span class="hljs-number">4</span> threads.<br><span class="hljs-type">Compressing</span> objects: <span class="hljs-number">100</span>% (<span class="hljs-number">15</span>/<span class="hljs-number">15</span>), <span class="hljs-keyword">done</span>.<br><span class="hljs-type">Writing</span> objects: <span class="hljs-number">100</span>% (<span class="hljs-number">20</span>/<span class="hljs-number">20</span>), <span class="hljs-number">1.64</span> <span class="hljs-type">KiB</span> | <span class="hljs-number">560.00</span> <span class="hljs-type">KiB</span>/s, <span class="hljs-keyword">done</span>.<br><span class="hljs-type">Total</span> <span class="hljs-number">20</span> (delta <span class="hljs-number">5</span>), reused <span class="hljs-number">0</span> (delta <span class="hljs-number">0</span>)<br>remote: <span class="hljs-type">Resolving</span> deltas: <span class="hljs-number">100</span>% (<span class="hljs-number">5</span>/<span class="hljs-number">5</span>), <span class="hljs-keyword">done</span>.<br><span class="hljs-type">To</span> github.com:michaelliao/learngit.git<br> * [<span class="hljs-keyword">new</span> branch]      master -&gt; master<br><span class="hljs-type">Branch</span> <span class="hljs-symbol">&#x27;master&#x27;</span> set up <span class="hljs-keyword">to</span> track remote branch <span class="hljs-symbol">&#x27;master&#x27;</span> from <span class="hljs-symbol">&#x27;origin&#x27;</span>.<br></code></pre></td></tr></table></figure>
+<p>把本地库的内容推送到远程，用<code>git push</code>命令，实际上是把当前分支<code>master</code>推送到远程。</p>
+<p>由于远程库是空的，我们第一次推送master分支时，加上了<code>-u</code>参数，Git不但会把本地的<code>master</code>分支内容推送的远程新的<code>master</code>分支，还会把本地的<code>master</code>分支和远程的<code>master</code>分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<p><strong>从现在起，只要本地作了提交，就可以通过命令：</strong></p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">$ git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> master//<span class="hljs-built_in">origin</span>依旧为远程库名称，master为要推送的分支名称<br></code></pre></td></tr></table></figure>
+
+<p><br></br><br></br></p>
+<h3 id="删除远程库"><a href="#删除远程库" class="headerlink" title="删除远程库"></a><div id="17">删除远程库</div></h3><p>在删除前，建议先用<code>git remote -v</code>查看远程库信息</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs scss">$ git remote -v<br>origin  git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:michaelliao/learn-git.git (fetch)<br>origin  git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:michaelliao/learn-git.git (push)<br></code></pre></td></tr></table></figure>
+<p><code>git remote rm &lt;name&gt;</code> 删除远程库，name为远程库名称<br>比如删除前文创建的名为origin的远程库</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> git remote <span class="hljs-built_in">rm</span> origin<br></code></pre></td></tr></table></figure>
+<p><br></br><br><strong>温馨提示：此处的“删除”其实是解除了本地和远程的绑定关系，并不是物理上删除了远程库。远程库本身并没有任何改动。要真正删除远程库，需要登录到GitHub，在后台页面找到删除按钮再删除。</strong><br><br></br><br>:boom:<strong>总结：</strong></p>
+<ul>
+<li><p>要关联一个远程库，使用命令<code>git remote add 远程仓库名字 git@github.com:远程仓库路径</code></p>
+</li>
+<li><p>关联一个远程库时必须给远程库指定一个名字，origin是默认习惯命名；</p>
+</li>
+<li><p>关联后，使用命令<code>git push -u 远程仓库名称 要推送的本地分支名称</code> 第一次推送master分支的所有内容；</p>
+</li>
+<li><p>此后，每次本地提交后，只要有必要，就可以使用命令<code>git push -u 远程仓库名称 要推送的本地分支名称</code>推送最新修改；</p>
+</li>
+</ul>
+<p><br></br><br></br></p>
+<h1 id="10-与Github或Gitee建立文件传输机制"><a href="#10-与Github或Gitee建立文件传输机制" class="headerlink" title="10.与Github或Gitee建立文件传输机制"></a><div id="10">10.与Github或Gitee建立文件传输机制</div></h1><p>你的本地Git仓库和GitHub仓库之间的传输方式有两种，一种是通过https，另一种是通过SSH加密的</p>
+<p>HTTPS：使用https url克隆对初学者来说会比较方便，复制https url然后到git Bash里面直接用clone命令克隆到本地就好了，但是每次fetch和push代码<strong>都需要输入账号和密码</strong>，这也是https方式的麻烦之处(发现了https免密登录的方式)。</p>
+<p>SSH：使用SSH url克隆却需要在克隆之前先配置和添加好SSH key，因此，如果你想要使用SSH url克隆的话，你必须是这个项目的<strong>拥有者或管理员</strong>，否则你是无法添加<strong>SSH key</strong>的。另外ssh默认是每次fetch和push代码<strong>都不需要输入账号和密码</strong><br><br></br><br>至于如何将本机与Github和Gitee建立SSH连接，方便推送不用输入邮箱密码，请参考下面链接：</p>
+<ul>
+<li>Github如何实现SSH加密传输：<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/896954117292416">Github平台的SSH</a></li>
+<li>Github如何实现SSH加密传输：<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/1163625339727712">Gitee平台的SSH</a></li>
+</ul>
+<p><br></br><br></br></p>
+<p><strong>这是我的第一篇万字博客！希望大家能够喜欢并从中收获到知识</strong></p>
+<p><strong>以上便是这篇文章的全部内容啦</strong></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>最后，我叫Smooth，在今年2022年我也会尽自己所能书写更多前端教程~</p>
+<p>掘金：<a target="_blank" rel="noopener" href="https://juejin.cn/user/1302297507801358">https://juejin.cn/user/1302297507801358</a></p>
+<p>CSDN：<a target="_blank" rel="noopener" href="https://i.csdn.net/#/user-center/profilehttp://blog.zhangjiancong.top">https://i.csdn.net/#/user-center/profilehttp://blog.zhangjiancong.top</a>)</p>
+<p><strong>最近发文计划为 <code>Webpack</code> 以及 性能优化 知识体系</strong></p>
+<p><strong>同时也可扫码关注我的公众号，公众号同步更新</strong></p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/baf0d019868147a1b84e94ff8380e7b9~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/git/" class="category-chain-item">git</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/git/">#git</a>
+      
+        <a href="/tags/%E5%8D%8F%E4%BD%9C%E5%B7%A5%E5%85%B7/">#协作工具</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <p class="note note-warning" style="font-weight: 600">
+    作者：Smooth<br /><br />
+    文章链接：http://example.com/2022/02/15/%E9%95%BF%E8%BE%BE%E4%B8%87%E5%AD%97%E7%9A%84git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/<br /><br />
+    版权说明：本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！
+  </p>
+  <br />
+  <!-- <div class="license-box my-3">
+    <div class="license-title">
+      <div>长达万字的git常用指令总结！！！适合小白及在工作中想要对git基本指令有所了解的人群(建议收藏)</div>
+      <div>http://example.com/2022/02/15/%E9%95%BF%E8%BE%BE%E4%B8%87%E5%AD%97%E7%9A%84git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Smooth</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月15日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div> -->
+
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/15/React%E5%AE%9E%E6%88%98/" title="React实战：使用Antd+EMOJIALL 实现emoji表情符号的输入">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">React实战：使用Antd+EMOJIALL 实现emoji表情符号的输入</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/15/%E6%B5%85%E8%B0%88javascript%E7%9A%84%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" title="浅谈javascript的原型和原型链(新手懵懂想学会原型链？看这篇文章就足够啦！！！)">
+                        <span class="hidden-mobile">浅谈javascript的原型和原型链(新手懵懂想学会原型链？看这篇文章就足够啦！！！)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.staticfile.org/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"GyO1gYwBSAE9WDPDP832Neqt-gzGzoHsz","appKey":"AAsGHr7sWjnMsyKVxj62V6IJ","path":"window.location.pathname","placeholder":"请不要奢侈你的评论ヾﾉ≧∀≦)o","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://juejin.cn/user/1302297507801358" target="_blank" rel="nofollow noopener"><span>掘金</span></a> <i class="iconfont icon-love"></i> <a href="https://i.csdn.net/#/user-center/profile" target="_blank" rel="nofollow noopener"><span>CSDN</span></a> 
+      <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('02/14/2022 8:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = "🚀 &nbsp本站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2021153967"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading2.gif" lazyload alt="police-icon"/>
+          
+          <span>粤ICP备2021153967号-1</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var title = subtitle.title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+</html>

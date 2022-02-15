@@ -16,20 +16,25 @@
   <meta name="author" content="Smooth">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="配置伪静态解决部署项目后页面刷新404问题，除了hashRouter和返回index.html的另一种方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2022/02/13/hello-world/index.html">
+<meta property="og:title" content="一文理解配置伪静态解决 部署项目刷新页面404问题">
+<meta property="og:url" content="http://example.com/2022/02/15/%E4%B8%80%E6%96%87%E7%90%86%E8%A7%A3%E9%85%8D%E7%BD%AE%E4%BC%AA%E9%9D%99%E6%80%81%E8%A7%A3%E5%86%B3%20%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2404%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="Smooth个人博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="配置伪静态解决部署项目后页面刷新404问题，除了hashRouter和返回index.html的另一种方法">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-02-13T13:26:00.832Z">
-<meta property="article:modified_time" content="2022-02-13T13:26:00.832Z">
+<meta property="og:image" content="http://example.com/img/404.gif">
+<meta property="article:published_time" content="2022-02-15T11:17:22.000Z">
+<meta property="article:modified_time" content="2022-02-15T11:31:05.158Z">
 <meta property="article:author" content="Smooth">
+<meta property="article:tag" content="Nginx">
+<meta property="article:tag" content="部署">
+<meta property="article:tag" content="服务器">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/404.gif">
   
   
-  <title>Hello World - Smooth个人博客</title>
+  <title>一文理解配置伪静态解决 部署项目刷新页面404问题 - Smooth个人博客</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -192,12 +197,12 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/preview.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/404.gif') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
-          <span id="subtitle" title="Hello World">
+          <span id="subtitle" title="一文理解配置伪静态解决 部署项目刷新页面404问题">
             
           </span>
         </div>
@@ -214,8 +219,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-02-13 21:26" pubdate>
-          2022年2月13日 晚上
+        <time datetime="2022-02-15 19:17" pubdate>
+          2022年2月15日 晚上
         </time>
       </span>
     
@@ -226,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 字
+          1.6k 字
         
       </span>
     
@@ -237,7 +242,7 @@
         
         
         
-          4 分钟
+          14 分钟
         
       </span>
     
@@ -283,31 +288,58 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">一文理解配置伪静态解决 部署项目刷新页面404问题</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年2月13日 晚上
+                    本文最后更新于：2022年2月15日 晚上
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+              <blockquote>
+<p><strong>大家好，我是Smooth，一名大二的前端爱好者，目标是想要成为一名前端开发工程师</strong></p>
+</blockquote>
+<p><strong>配置伪静态解决部署项目后页面刷新404问题</strong></p>
+<p>网上看了很多如何解决 <code>项目部署后刷新页面报404</code> 的文章，解决的方式无非只有两个：</p>
+<ol>
+<li>将 historyRouter 变为 hashRouter （治标不治本）</li>
+<li>配置无论任何路径，都返回index.html，剩下的事情交给 React Router</li>
+</ol>
+<p>但第二种不知为何我一直不奏效，直到使用了 <code>配置伪静态</code> 这种方法，所以本篇文章我想向很多跟我遇到同样问题的小伙伴分享一下我的解决方法</p>
+<h2 id="普及基本概念-Q-amp-A"><a href="#普及基本概念-Q-amp-A" class="headerlink" title="普及基本概念 Q&amp;A"></a>普及基本概念 Q&amp;A</h2><h3 id="为什么会404-？"><a href="#为什么会404-？" class="headerlink" title="为什么会404 ？"></a>为什么会404 ？</h3><p>原因很简单：当你刷新时，你首先是根据url访问的服务器资源地址，然后返回的页面内加载了对应资源，最后在浏览器进行渲染；也就是说如果这个时候报404，是因为你后台并没有针对这个路由给出返回HTML内容，也谈不上执行React Router了。</p>
+<p><strong>简单来说就是，没在服务器对应url路径匹配到你需要的资源</strong><br><br></br></p>
+<h3 id="为什么不刷新就不会404，不是说服务器根据你这个路径找不到对应资源吗？"><a href="#为什么不刷新就不会404，不是说服务器根据你这个路径找不到对应资源吗？" class="headerlink" title="为什么不刷新就不会404，不是说服务器根据你这个路径找不到对应资源吗？"></a>为什么不刷新就不会404，不是说服务器根据你这个路径找不到对应资源吗？</h3><p>你在浏览器内可以由首页跳转到其他路由地址，是因为这是由前端自行渲染的，你在React Router定义了对应的路由，脚本并没有刷新网页访问后台，是JS动态更改了location。<br><br></br></p>
+<h3 id="为什么-hashRouter-可以，historyRouter-不行？"><a href="#为什么-hashRouter-可以，historyRouter-不行？" class="headerlink" title="为什么 hashRouter 可以，historyRouter 不行？"></a>为什么 hashRouter 可以，historyRouter 不行？</h3><p><code>React</code>是属于单页应用（single-page application）</p>
+<p>而<code>SPA</code>是一种网络应用程序或网站的模型，所有用户交互是通过动态重写当前页面，前面我们也看到了，不管我们应用有多少页面，构建物都只会产出一个<code>index.html</code>。当我们在地址栏输入 <a target="_blank" rel="noopener" href="http://www.xxx.com/">www.xxx.com</a> 时，这时会打开我们 <code>nginx</code> 配置的目录下的 index.html 文件，然后我们在跳转路由进入到 <a target="_blank" rel="noopener" href="http://www.xxx.com/login">www.xxx.com/login</a></p>
+<p>关键在这里，当我们在 <a target="_blank" rel="noopener" href="http://www.xxx.com/login">www.xxx.com/login</a> 页执行刷新操作，nginx location 是没有根据这路径做相关的资源返回配置的，所以就会出现 404 的情况</p>
+<p><strong>hashRouter</strong></p>
+<p>router hash 模式我们都知道是用符号#表示的，如  <a target="_blank" rel="noopener" href="http://www.xxx.com/#/login">www.xxx.com/#/login</a>, hash 的值为 #&#x2F;login。</p>
+<p>它的特点在于：hash 虽然出现在 URL 中，但不会被包括在 HTTP 请求中，对服务端完全没有影响，因此改变 hash 不会重新加载页面</p>
+<p>hash 模式下，仅 hash 符号之前的内容会被包含在请求中，如 <a target="_blank" rel="noopener" href="http://www.xxx.com/#/login">www.xxx.com/#/login</a> 只有 <a target="_blank" rel="noopener" href="http://www.xxx.com/">www.xxx.com</a> 会被包含在请求中 ，因此对于服务端来说，即使没有配置location，也不会返回404错误</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>好，说了那么多，现在就阐述解决方案<br><strong>以下示例为宝塔面板</strong></p>
+<h3 id="配置伪静态资源"><a href="#配置伪静态资源" class="headerlink" title="配置伪静态资源"></a>配置伪静态资源</h3><p><strong>第一步</strong>找到配置项入口</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9ff6ba724b4c46d5a971b5932a929d00~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload alt="image.png"></p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/db83bb6f5cdb4a659974bd6a9ebf4ff7~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload alt="image.png"></p>
+<p><br></br><br><strong>第二步</strong> 进行伪静态配置</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5815f3a5d4d0432e8219b600ff79e8cd~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload alt="image.png"></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">location</span> / &#123;<br>    <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ <span class="hljs-variable">@router</span>;<br>    <span class="hljs-attribute">index</span>  index.html;<br>&#125;<br><br><span class="hljs-section">location</span> <span class="hljs-variable">@router</span>&#123;<br>      <span class="hljs-attribute">rewrite</span><span class="hljs-regexp"> ^.*$</span> /index.html <span class="hljs-literal">last</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><br></br><br><strong>第三步</strong> 重启服务器即可<br><br></br></p>
+<h3 id="其他解决"><a href="#其他解决" class="headerlink" title="其他解决"></a>其他解决</h3><p>可以使用文头所说的方法</p>
+<ol>
+<li>将 historyRouter 变为 hashRouter （治标不治本）</li>
+<li>配置无论任何路径，都返回index.html，剩下的事情交给React Router</li>
+</ol>
+<p>只不过我对于第二种方法一直配置不生效</p>
+<h3 id="以上便是这篇教程的全部内容啦"><a href="#以上便是这篇教程的全部内容啦" class="headerlink" title="以上便是这篇教程的全部内容啦"></a>以上便是这篇教程的全部内容啦</h3><p>最后，我叫Smooth，在今年2022年我也会尽自己所能书写更多前端教程~</p>
+<p>掘金：<a target="_blank" rel="noopener" href="https://juejin.cn/user/1302297507801358">https://juejin.cn/user/1302297507801358</a></p>
+<p>CSDN：<a target="_blank" rel="noopener" href="https://i.csdn.net/#/user-center/profile">https://i.csdn.net/#/user-center/profile</a></p>
+<p><strong>最近发文计划为 <code>Webpack</code> 以及 性能优化 知识体系</strong></p>
+<p><strong>同时也可扫码关注我的公众号，公众号同步更新</strong></p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/baf0d019868147a1b84e94ff8380e7b9~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload></p>
 
               
             </div>
@@ -315,6 +347,38 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Nginx/" class="category-chain-item">Nginx</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Nginx/">#Nginx</a>
+      
+        <a href="/tags/%E9%83%A8%E7%BD%B2/">#部署</a>
+      
+        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
+      
+    </div>
   
 </div>
 
@@ -324,14 +388,14 @@
 
   <p class="note note-warning" style="font-weight: 600">
     作者：Smooth<br /><br />
-    文章链接：http://example.com/2022/02/13/hello-world/<br /><br />
+    文章链接：http://example.com/2022/02/15/%E4%B8%80%E6%96%87%E7%90%86%E8%A7%A3%E9%85%8D%E7%BD%AE%E4%BC%AA%E9%9D%99%E6%80%81%E8%A7%A3%E5%86%B3%20%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2404%E9%97%AE%E9%A2%98/<br /><br />
     版权说明：本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！
   </p>
   <br />
   <!-- <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://example.com/2022/02/13/hello-world/</div>
+      <div>一文理解配置伪静态解决 部署项目刷新页面404问题</div>
+      <div>http://example.com/2022/02/15/%E4%B8%80%E6%96%87%E7%90%86%E8%A7%A3%E9%85%8D%E7%BD%AE%E4%BC%AA%E9%9D%99%E6%80%81%E8%A7%A3%E5%86%B3%20%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2404%E9%97%AE%E9%A2%98/</div>
     </div>
     <div class="license-meta">
       
@@ -343,7 +407,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年2月13日</div>
+          <div>2022年2月15日</div>
         </div>
       
       
@@ -374,15 +438,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/13/newpapername/" title="newpapername">
+                      <a href="/2022/02/15/10%E5%88%86%E9%92%9F%E8%AE%A9%E4%BD%A0%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E5%AD%90%E5%9F%9F%E5%90%8D%E6%9D%A5%E9%83%A8%E7%BD%B2%E5%A4%9A%E4%B8%AA%E9%A1%B9%E7%9B%AE/" title="10分钟让你彻底理解如何配置子域名来部署多个项目">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">newpapername</span>
+                        <span class="hidden-mobile">10分钟让你彻底理解如何配置子域名来部署多个项目</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/02/15/%E5%B8%A6%E4%BD%A03%E5%88%86%E9%92%9F%E6%8E%8C%E6%8F%A1%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E9%9D%A2%E8%AF%95%E9%A2%98/" title="带你3分钟掌握常见的水平垂直居中面试题">
+                        <span class="hidden-mobile">带你3分钟掌握常见的水平垂直居中面试题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
