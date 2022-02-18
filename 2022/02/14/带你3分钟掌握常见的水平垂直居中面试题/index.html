@@ -16,25 +16,24 @@
   <meta name="author" content="Smooth">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本篇文章我将从概念和对应题目知识点讲起，希望大家能有所收获 一、原型 ①所有引用类型都有一个_proto_(隐式原型)属性(类似链表中的next指针)， 链表可以通过.next访问下个元素，原型中可通">
+    <meta name="description" content="带你3分钟搞定面试中居中方面的知识，详细介绍了各种常见的水平与垂直居中，只要这些都了解了，居中这方面面试就没问题了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈javascript的原型和原型链(新手懵懂想学会原型链？看这篇文章就足够啦！！！)">
-<meta property="og:url" content="http://example.com/2022/02/15/%E6%B5%85%E8%B0%88javascript%E7%9A%84%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/index.html">
+<meta property="og:title" content="带你3分钟掌握常见的水平垂直居中面试题">
+<meta property="og:url" content="http://example.com/2022/02/14/%E5%B8%A6%E4%BD%A03%E5%88%86%E9%92%9F%E6%8E%8C%E6%8F%A1%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="Smooth个人博客">
-<meta property="og:description" content="本篇文章我将从概念和对应题目知识点讲起，希望大家能有所收获 一、原型 ①所有引用类型都有一个_proto_(隐式原型)属性(类似链表中的next指针)， 链表可以通过.next访问下个元素，原型中可通">
+<meta property="og:description" content="带你3分钟搞定面试中居中方面的知识，详细介绍了各种常见的水平与垂直居中，只要这些都了解了，居中这方面面试就没问题了">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/js.webp">
-<meta property="article:published_time" content="2022-02-15T10:59:06.000Z">
-<meta property="article:modified_time" content="2022-02-15T11:05:19.956Z">
+<meta property="og:image" content="http://example.com/img/css%E5%B1%85%E4%B8%AD.png">
+<meta property="article:published_time" content="2022-02-14T11:17:07.000Z">
+<meta property="article:modified_time" content="2022-02-18T04:12:55.524Z">
 <meta property="article:author" content="Smooth">
-<meta property="article:tag" content="前端基础">
-<meta property="article:tag" content="原型">
-<meta property="article:tag" content="原型链">
+<meta property="article:tag" content="水平居中">
+<meta property="article:tag" content="垂直居中">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/js.webp">
+<meta name="twitter:image" content="http://example.com/img/css%E5%B1%85%E4%B8%AD.png">
   
   
-  <title>浅谈javascript的原型和原型链(新手懵懂想学会原型链？看这篇文章就足够啦！！！) - Smooth个人博客</title>
+  <title>带你3分钟掌握常见的水平垂直居中面试题 - Smooth个人博客</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,12 +196,12 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/js.webp') no-repeat center center; background-size: cover;">
+     style="background: url('/img/css%E5%B1%85%E4%B8%AD.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
-          <span id="subtitle" title="浅谈javascript的原型和原型链(新手懵懂想学会原型链？看这篇文章就足够啦！！！)">
+          <span id="subtitle" title="带你3分钟掌握常见的水平垂直居中面试题">
             
           </span>
         </div>
@@ -219,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-02-15 18:59" pubdate>
-          2022年2月15日 晚上
+        <time datetime="2022-02-14 19:17" pubdate>
+          2022年2月14日 晚上
         </time>
       </span>
     
@@ -231,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          1.1k 字
         
       </span>
     
@@ -242,7 +241,7 @@
         
         
         
-          12 分钟
+          10 分钟
         
       </span>
     
@@ -288,48 +287,34 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">浅谈javascript的原型和原型链(新手懵懂想学会原型链？看这篇文章就足够啦！！！)</h1>
+            <h1 style="display: none">带你3分钟掌握常见的水平垂直居中面试题</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年2月15日 晚上
+                    本文最后更新于：2022年2月18日 中午
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <p><strong>本篇文章我将从概念和对应题目知识点讲起，希望大家能有所收获</strong><br><br/><br/></p>
-<h2 id="一、原型"><a href="#一、原型" class="headerlink" title="一、原型"></a>一、原型</h2><p>①所有引用类型都有一个_proto_(隐式原型)属性(类似链表中的next指针)， 链表可以通过.next访问下个元素，原型中可通过._proto_访问上一级元素。<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/093ea1edf14e4f5d8de22bb5ac8f10a7~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload alt="在这里插入图片描述"></p>
-<p>②所有类都有一个prototype(原型)属性，例如：Object,Function,Array</p>
-<p>③所有引用类型的_proto_属性指向它构造函数的prototype<br>例如：arr是一个数组实例，那么arr._proto_&#x3D;Array.prototype<br><br/><br/></p>
-<h2 id="二、原型链"><a href="#二、原型链" class="headerlink" title="二、原型链"></a>二、原型链</h2><p>当访问一个对象的某个属性时，会先在这个对象本身上查找，如果没有找到，则会去它的_proto_上查找，即它的构造函数的prototype，如果还没有找到就会继续在构造函数prototype的_proto_中查找，这样一层一层向上查找就会形成一个链式结构，我们称为原型链。</p>
-<p>下面例子有助于你对原型链的理解：</p>
-<p>arr为Array数组的实例</p>
-<p>arr._proto_&#x3D;Array.prototype</p>
-<p>Array._proto_&#x3D;Object.prototype</p>
-<p><strong>分析：arr这个数组实例，沿着原型链找，找到数组的原型对象，数组这个类沿着原型链找，找到对象的原型对象(最高级)，因此也可以用arr._proto_._proto_来找到Object.prototype，类似链表中的next指针，只不过_proto_是往上找。</strong><br><br/><br/></p>
-<h2 id="面试真题："><a href="#面试真题：" class="headerlink" title="面试真题："></a>面试真题：</h2><p><strong>题目一：<br>instanceof的原理，并用代码实现</strong><br><br/><br>分析：如果A沿着原型链能找到B.prototype，那么A instanceof B 为true(用_proto_来找)</p>
-<p><strong>解法：遍历A的原型链，如果找到B.prototype，返回true，否则返回false</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">instanceof</span> =(<span class="hljs-params">A,B</span>)=&gt;&#123;<br>    <span class="hljs-keyword">let</span> p = A;<br>    <span class="hljs-keyword">while</span>(p)&#123;<br>        <span class="hljs-keyword">if</span>(p === B.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        p = p.<span class="hljs-property">_proto_</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<br/>
-
-<p><strong>题目二：</strong></p>
-<p>var foo &#x3D; {},        F &#x3D; function(){};</p>
-<p>Object.prototype.a &#x3D; ‘value a’;</p>
-<p>Function.prototype.b &#x3D; ‘value b’;</p>
-<p>console.log(foo.a);<br>console.log(foo.b);<br>console.log(F.a);<br>console.log(F.b);<br><br/><br>分析：如果在A对象上没找到x属性，那么会沿着原型链找x属性。(如果A为函数实例，那么A上面找不到，就去找Function这个类上有没有挂载x属性，如果没有就继续往上找到Object原型对象上有没有x属性)</p>
-<p><strong>解法：明确foo和F变量的原型链，沿着原型链找a属性和b属性</strong></p>
-<p>因此答案为：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-string">&#x27;value a&#x27;</span><br><span class="hljs-string">&#x27;undefined&#x27;</span><br><span class="hljs-string">&#x27;value a&#x27;</span><br><span class="hljs-string">&#x27;value b&#x27;</span><br></code></pre></td></tr></table></figure>
-<p>foo这个对象实例上没有b属性，是因为原型链不能往下找，只能一层一层往上找，<strong>即对象实例不能腆着脸问他的下级Function有没有挂载b这个属性</strong></p>
-<br/>
-<br/>
-
-<br/>
-
-<p><strong>觉得本篇文章对你有帮助的请不要忘记一键三连加关注~~<br/><br>你的支持就是对我最大的动力！！<br/><br>会继续努力码更多的精品文章！！！</strong></p>
+              <blockquote>
+<p><strong>大家好，我是Smooth，一名大二的前端爱好者，目标是想要成为一名前端开发工程师</strong></p>
+</blockquote>
+<h4 id="这是一篇关于css-居中知识的总结，只要这些都了解了，居中这方面面试就没问题了"><a href="#这是一篇关于css-居中知识的总结，只要这些都了解了，居中这方面面试就没问题了" class="headerlink" title="这是一篇关于css 居中知识的总结，只要这些都了解了，居中这方面面试就没问题了"></a>这是一篇关于<code>css</code> 居中知识的总结，只要这些都了解了，居中这方面面试就没问题了</h4><p>只要涉及到CSS就绕不开定位问题，尤其是盒子居中。居中又分为水平居中和垂直居中，有多种实现方式，下面我便一一列出来。</p>
+<h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2><h5 id="1-inline元素：text-align-center"><a href="#1-inline元素：text-align-center" class="headerlink" title="1.  inline元素：text-align: center"></a>1.  inline元素：text-align: center</h5><h5 id="2-block元素：margin-0-auto"><a href="#2-block元素：margin-0-auto" class="headerlink" title="2.  block元素：margin: 0 auto"></a>2.  block元素：margin: 0 auto</h5><h5 id="3-absolute元素：left-50-margin-left负值-值为该元素宽度的一半"><a href="#3-absolute元素：left-50-margin-left负值-值为该元素宽度的一半" class="headerlink" title="3.  absolute元素：left: 50% + margin-left负值(值为该元素宽度的一半)"></a>3.  absolute元素：left: 50% + margin-left负值(值为该元素宽度的一半)</h5><h5 id="4-absolute元素：left-50-transform-translateX（-50"><a href="#4-absolute元素：left-50-transform-translateX（-50" class="headerlink" title="4.  absolute元素：left: 50% + transform: translateX（-50%)"></a>4.  absolute元素：left: 50% + transform: translateX（-50%)</h5><h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><h5 id="1-inline元素：line-height的值等于height值"><a href="#1-inline元素：line-height的值等于height值" class="headerlink" title="1.  inline元素：line-height的值等于height值"></a>1.  inline元素：line-height的值等于height值</h5><h5 id="2-absolute元素：top：50-margin-top负值-值为该元素高度的一半"><a href="#2-absolute元素：top：50-margin-top负值-值为该元素高度的一半" class="headerlink" title="2.  absolute元素：top：50%+margin-top负值(值为该元素高度的一半)"></a>2.  absolute元素：top：50%+margin-top负值(值为该元素高度的一半)</h5><h5 id="3-absolute元素：top：50-transform-translateY（-50"><a href="#3-absolute元素：top：50-transform-translateY（-50" class="headerlink" title="3.  absolute元素：top：50%+transform: translateY（-50%)"></a>3.  absolute元素：top：50%+transform: translateY（-50%)</h5><h5 id="4-absolute元素：有固定宽高度-top，left，bottom，right-x3D-0-margin-auto"><a href="#4-absolute元素：有固定宽高度-top，left，bottom，right-x3D-0-margin-auto" class="headerlink" title="4.  absolute元素：有固定宽高度+top，left，bottom，right&#x3D;0  +  margin:auto"></a>4.  absolute元素：有固定宽高度+top，left，bottom，right&#x3D;0  <strong>+</strong>  margin:auto</h5><h2 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h2><p>就是上述的水平居中+垂直居中合起来<br>这里我举几个常用的例子：</p>
+<h3 id="1-放在定位是relative盒子内的absolute盒子："><a href="#1-放在定位是relative盒子内的absolute盒子：" class="headerlink" title="1. 放在定位是relative盒子内的absolute盒子："></a>1. 放在定位是relative盒子内的absolute盒子：</h3><h4 id="top-50-left-50-transform-translate-50-50"><a href="#top-50-left-50-transform-translate-50-50" class="headerlink" title="top: 50%;left: 50%;transform: translate(-50%,-50%);"></a><code>top: 50%;left: 50%;transform: translate(-50%,-50%);</code></h4><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3e70cab9a6a74837bf5fb60488a5ee13~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload><br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5ace512ca45f4c2fa7d6f6dc9d519c1a~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload></p>
+<h3 id="2-知道盒子的宽度和高度"><a href="#2-知道盒子的宽度和高度" class="headerlink" title="2. 知道盒子的宽度和高度"></a>2. 知道盒子的宽度和高度</h3><h4 id="top-50-left-50"><a href="#top-50-left-50" class="headerlink" title="top: 50%;left: 50%;"></a><code>top: 50%;left: 50%;</code></h4><h4 id="加上-margin-left-负值-值为该元素宽度的一半-margin-top负值-值为该元素高度的一半"><a href="#加上-margin-left-负值-值为该元素宽度的一半-margin-top负值-值为该元素高度的一半" class="headerlink" title="加上 margin-left 负值(值为该元素宽度的一半);margin-top负值(值为该元素高度的一半)"></a><code>加上 margin-left 负值(值为该元素宽度的一半);margin-top负值(值为该元素高度的一半)</code></h4><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a24637a30c2e4d3a9a8b8e1dd8ed0253~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload><br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/799ae7a0a74841a8b44d15087af1d0b2~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload></p>
+<h3 id="3-放在定位是relative盒子内的absolute盒子且该盒子有固定宽高："><a href="#3-放在定位是relative盒子内的absolute盒子且该盒子有固定宽高：" class="headerlink" title="3. 放在定位是relative盒子内的absolute盒子且该盒子有固定宽高："></a>3. 放在定位是relative盒子内的absolute盒子且该盒子有固定宽高：</h3><h4 id="top，left，bottom，right-0-margin-auto"><a href="#top，left，bottom，right-0-margin-auto" class="headerlink" title="top，left，bottom，right=0 + margin:auto"></a><code>top，left，bottom，right=0 + margin:auto</code></h4><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3414379e55104acdae89ca46ee9c90e0~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload><br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6cd9ff4f33ae4a32a3a7aadaa3770e11~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload></p>
+<h3 id="4-CSS3弹性布局（flex）"><a href="#4-CSS3弹性布局（flex）" class="headerlink" title="4. CSS3弹性布局（flex）"></a>4. CSS3弹性布局（flex）</h3><p>如果使用CSS3的弹性布局（flex）的话，问题就会变得容易多了。使用CSS3的弹性布局很简单，只要设置父元素设置成以下属性即可</p>
+<h4 id="display-flex-x2F-x2F-flex布局"><a href="#display-flex-x2F-x2F-flex布局" class="headerlink" title="display:flex &#x2F;&#x2F; flex布局"></a>display:flex &#x2F;&#x2F; flex布局</h4><h4 id="align-items-center；-x2F-x2F-元素水平居中"><a href="#align-items-center；-x2F-x2F-元素水平居中" class="headerlink" title="align-items:center；&#x2F;&#x2F; 元素水平居中"></a>align-items:center；&#x2F;&#x2F; 元素水平居中</h4><h4 id="justify-content-center；-x2F-x2F-元素垂直居中"><a href="#justify-content-center；-x2F-x2F-元素垂直居中" class="headerlink" title="justify-content:center；&#x2F;&#x2F; 元素垂直居中"></a>justify-content:center；&#x2F;&#x2F; 元素垂直居中</h4><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b87848c375b948ceb9380571733c19a2~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload><br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9c25f1c8d3b248fa8aca1d147d0c6f23~tplv-k3u1fbpfcp-zoom-1.image" srcset="/img/loading2.gif" lazyload></p>
+<h3 id="以上便是这篇教程的全部内容啦"><a href="#以上便是这篇教程的全部内容啦" class="headerlink" title="以上便是这篇教程的全部内容啦"></a>以上便是这篇教程的全部内容啦</h3><p>最后，我叫Smooth，在今年2022年我也会尽自己所能书写更多前端教程~</p>
+<p>掘金：<a target="_blank" rel="noopener" href="https://juejin.cn/user/1302297507801358">https://juejin.cn/user/1302297507801358</a></p>
+<p>CSDN：<a target="_blank" rel="noopener" href="https://i.csdn.net/#/user-center/profile">https://i.csdn.net/#/user-center/profile</a></p>
+<p><strong>最近发文计划为 <code>Webpack</code> 以及 性能优化 知识体系</strong></p>
+<p><strong>同时也可扫码关注我的公众号，公众号同步更新</strong></p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/baf0d019868147a1b84e94ff8380e7b9~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload></p>
 
               
             </div>
@@ -347,7 +332,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/js/" class="category-chain-item">js</a>
+  <a href="/categories/css/" class="category-chain-item">css</a>
   
   
 
@@ -362,11 +347,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/">#前端基础</a>
+        <a href="/tags/%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD/">#水平居中</a>
       
-        <a href="/tags/%E5%8E%9F%E5%9E%8B/">#原型</a>
-      
-        <a href="/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/">#原型链</a>
+        <a href="/tags/%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">#垂直居中</a>
       
     </div>
   
@@ -378,14 +361,14 @@
 
   <p class="note note-warning" style="font-weight: 600">
     作者：Smooth<br /><br />
-    文章链接：http://example.com/2022/02/15/%E6%B5%85%E8%B0%88javascript%E7%9A%84%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/<br /><br />
+    文章链接：http://example.com/2022/02/14/%E5%B8%A6%E4%BD%A03%E5%88%86%E9%92%9F%E6%8E%8C%E6%8F%A1%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E9%9D%A2%E8%AF%95%E9%A2%98/<br /><br />
     版权说明：本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！
   </p>
   <br />
   <!-- <div class="license-box my-3">
     <div class="license-title">
-      <div>浅谈javascript的原型和原型链(新手懵懂想学会原型链？看这篇文章就足够啦！！！)</div>
-      <div>http://example.com/2022/02/15/%E6%B5%85%E8%B0%88javascript%E7%9A%84%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/</div>
+      <div>带你3分钟掌握常见的水平垂直居中面试题</div>
+      <div>http://example.com/2022/02/14/%E5%B8%A6%E4%BD%A03%E5%88%86%E9%92%9F%E6%8E%8C%E6%8F%A1%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E9%9D%A2%E8%AF%95%E9%A2%98/</div>
     </div>
     <div class="license-meta">
       
@@ -397,7 +380,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年2月15日</div>
+          <div>2022年2月14日</div>
         </div>
       
       
@@ -428,9 +411,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/15/%E9%95%BF%E8%BE%BE%E4%B8%87%E5%AD%97%E7%9A%84git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/" title="长达万字的git常用指令总结！！！适合小白及在工作中想要对git基本指令有所了解的人群(建议收藏)">
+                      <a href="/2022/02/15/%E4%B8%80%E6%96%87%E7%90%86%E8%A7%A3%E9%85%8D%E7%BD%AE%E4%BC%AA%E9%9D%99%E6%80%81%E8%A7%A3%E5%86%B3%20%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2404%E9%97%AE%E9%A2%98/" title="一文理解配置伪静态解决 部署项目刷新页面404问题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">长达万字的git常用指令总结！！！适合小白及在工作中想要对git基本指令有所了解的人群(建议收藏)</span>
+                        <span class="hidden-mobile">一文理解配置伪静态解决 部署项目刷新页面404问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -438,8 +421,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/02/15/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" title="hexo 搭建自己的个人博客">
-                        <span class="hidden-mobile">hexo 搭建自己的个人博客</span>
+                      <a href="/2022/02/13/React%E5%AE%9E%E6%88%98/" title="React实战：使用Antd+EMOJIALL 实现emoji表情符号的输入">
+                        <span class="hidden-mobile">React实战：使用Antd+EMOJIALL 实现emoji表情符号的输入</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -577,7 +560,7 @@ var now = new Date();
 
 function createtime() {
     //此处修改你的建站时间或者网站上线时间
-    var grt = new Date('02/14/2022 8:00:00');
+    var grt = new Date('02/10/2022 8:00:00');
     now.setTime(now.getTime() + 250);
     days = (now - grt) / 1000 / 60 / 60 / 24;
 
