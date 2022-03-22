@@ -13,16 +13,14 @@
     
     <categories>
       
-      <category>力扣</category>
+      <category>React</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>力扣</tag>
-      
-      <tag>LeetCode</tag>
+      <tag>React Fiber</tag>
       
     </tags>
     
@@ -49,11 +47,11 @@
     
     <tags>
       
+      <tag>面试系列</tag>
+      
       <tag>计算机网络</tag>
       
       <tag>浏览器原理</tag>
-      
-      <tag>面试系列</tag>
       
     </tags>
     
@@ -71,16 +69,16 @@
     
     <categories>
       
-      <category>力扣</category>
+      <category>css</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>力扣</tag>
+      <tag>css</tag>
       
-      <tag>LeetCode</tag>
+      <tag>面试系列</tag>
       
     </tags>
     
