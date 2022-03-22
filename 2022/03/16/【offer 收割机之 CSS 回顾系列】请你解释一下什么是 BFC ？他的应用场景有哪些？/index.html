@@ -1,0 +1,952 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favico.jpg">
+  <link rel="icon" href="/img/favico.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Smooth">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本篇文章将会用大白话的方式带你彻底掌握 BFC，从此面试不再惧怕 BFC 的提问！  一、常见定位方案 在讲 BFC 之前，我们先来了解一下常见的定位方案，定位方案是控制元素的布局">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【offer 收割机之 CSS 回顾系列】请你解释一下什么是 BFC ？他的应用场景有哪些？">
+<meta property="og:url" content="http://example.com/2022/03/16/%E3%80%90offer%20%E6%94%B6%E5%89%B2%E6%9C%BA%E4%B9%8B%20CSS%20%E5%9B%9E%E9%A1%BE%E7%B3%BB%E5%88%97%E3%80%91%E8%AF%B7%E4%BD%A0%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF%20BFC%20%EF%BC%9F%E4%BB%96%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/index.html">
+<meta property="og:site_name" content="Smooth个人博客">
+<meta property="og:description" content="本篇文章将会用大白话的方式带你彻底掌握 BFC，从此面试不再惧怕 BFC 的提问！  一、常见定位方案 在讲 BFC 之前，我们先来了解一下常见的定位方案，定位方案是控制元素的布局">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/BFC.png">
+<meta property="article:published_time" content="2022-03-16T03:54:29.000Z">
+<meta property="article:modified_time" content="2022-03-22T08:17:54.748Z">
+<meta property="article:author" content="Smooth">
+<meta property="article:tag" content="力扣">
+<meta property="article:tag" content="LeetCode">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/BFC.png">
+  
+  
+  <title>【offer 收割机之 CSS 回顾系列】请你解释一下什么是 BFC ？他的应用场景有哪些？ - Smooth个人博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading2.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Smooth&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/BFC.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          <span id="subtitle" title="【offer 收割机之 CSS 回顾系列】请你解释一下什么是 BFC ？他的应用场景有哪些？">
+            
+          </span>
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Smooth
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-03-16 11:54" pubdate>
+          2022年3月16日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">【offer 收割机之 CSS 回顾系列】请你解释一下什么是 BFC ？他的应用场景有哪些？</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2022年3月22日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p><strong>🧨 大家好，我是 Smooth，一名大二的 SCAU 前端er <br /> 🏆 本篇文章将会用大白话的方式带你彻底掌握 BFC，从此面试不再惧怕 BFC 的提问！<br /> 🙌 如文章有误，恳请评论区指正，谢谢！</strong></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/editor/drafts/7070860888940478472">原文章链接</a></p>
+<h2 id="一、常见定位方案"><a href="#一、常见定位方案" class="headerlink" title="一、常见定位方案"></a>一、常见定位方案</h2><p>在讲 BFC 之前，我们先来了解一下常见的定位方案，定位方案是控制元素的布局，有三种常见方案:</p>
+<ol>
+<li>普通流 (normal flow)</li>
+</ol>
+<blockquote>
+<p><strong>在普通流中，元素按照其在 HTML 中的先后位置至上而下布局，在这个过程中，行内元素水平排列，直到当行被占满然后换行，块级元素则会被渲染为完整的一个新行，除非另外指定，否则所有元素默认都是普通流定位，也可以说，普通流中元素的位置由该元素在 HTML 文档中的位置决定。</strong></p>
+</blockquote>
+<p>而对于 <code>float</code> 的 <strong>不完全脱离文档流</strong> 和 <code>position: absolute</code> 的完全脱离文档流，指的就是上面这个 HTML 的普通流</p>
+<ol start="2">
+<li><p><code>float</code> 对于浮动，是指元素先按照普通流的位置出现，然后将元素移动到所在行的最左边或最右边</p>
+</li>
+<li><p><code>absolute</code> 在绝对定位布局中，元素会完全脱离普通流，而元素具体的位置是在相对于不为 static 的第一个父元素 及绝对定位的坐标决定。<br><br></br></p>
+<h2 id="二、BFC-概念"><a href="#二、BFC-概念" class="headerlink" title="二、BFC 概念"></a>二、BFC 概念</h2></li>
+</ol>
+<p>Formatting context(格式化上下文) 是 W3C CSS2.1 规范中的一个概念。它是页面中的一块渲染区域，并且有一套渲染规则，它决定了其子元素将如何定位，以及和其他元素的关系和相互作用。</p>
+<h3 id="所以，BFC-是什么呢？"><a href="#所以，BFC-是什么呢？" class="headerlink" title="所以，BFC 是什么呢？"></a>所以，BFC 是什么呢？</h3><blockquote>
+<p>BFC 是<strong>块级格式化上下文</strong>，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。</p>
+</blockquote>
+<p><strong>通俗一点来讲，可以把 BFC 理解为一个封闭的大箱子，箱子内部的元素无论如何翻江倒海，都不会影响到外部。</strong><br><br></br></p>
+<h2 id="三、BFC-规则"><a href="#三、BFC-规则" class="headerlink" title="三、BFC 规则"></a>三、BFC 规则</h2><ul>
+<li><p>BFC 中子元素的 margin box 的左边， 与包含块 (BFC) border box的左边相接触 (子元素 absolute 除外)</p>
+</li>
+<li><p>BFC 的区域不会与 float 的元素区域重叠</p>
+</li>
+<li><p><code>BFC</code> 就是一个块级元素，块级元素会在垂直方向一个接一个的排列</p>
+</li>
+<li><p><code>BFC</code> 就是页面中的一个隔离的独立容器，容器里的标签不会影响到外部标签</p>
+</li>
+<li><p>垂直方向距离由 <code>margin</code> 决定，属于同一个 <code>BFC</code> 的两个相邻标签外边距会发生重叠，属于不同 <code>BFC</code> 的不会重叠</p>
+</li>
+<li><p>计算 <code>BFC</code> 的高度时，浮动元素也参与计算<br><br></br></p>
+<h2 id="四、触发-BFC-的条件"><a href="#四、触发-BFC-的条件" class="headerlink" title="四、触发 BFC 的条件"></a>四、触发 BFC 的条件</h2></li>
+</ul>
+<p>只要元素满足下面任一条件即可触发 BFC 特性：</p>
+<ul>
+<li>body 根元素就是一个 BFC</li>
+<li>浮动元素：float 除 none 以外的值</li>
+<li>绝对定位元素：position (absolute、fixed)</li>
+<li>display 为 inline-block、table-cell、flex</li>
+<li>overflow 除了 visible 以外的值 (hidden、auto、scroll)</li>
+</ul>
+<p><strong>相信大家在看 BFC 文章时经常会看到上面的字眼吧，没有案例不太好理解，下面便给出几个案例带你真正掌握 BFC</strong><br><br></br></p>
+<h2 id="五、BFC-特性及应用"><a href="#五、BFC-特性及应用" class="headerlink" title="五、BFC 特性及应用"></a>五、BFC 特性及应用</h2><p><strong>1. 阻止<code>margin</code>重叠</strong></p>
+<p>对于同一个 BFC 内的两个相邻元素，如果分别设置了上下边距，那么会发生折叠（取大的那个）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs css">&lt;head&gt;<br><span class="hljs-selector-tag">div</span>&#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">50px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;<br>    <span class="hljs-attribute">background</span>: pink;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">50px</span>;<br>&#125;<br>&lt;/head&gt;<br>&lt;<span class="hljs-selector-tag">body</span>&gt;<br>    &lt;<span class="hljs-selector-tag">div</span>&gt;&lt;/<span class="hljs-selector-tag">div</span>&gt;<br>    &lt;<span class="hljs-selector-tag">div</span>&gt;&lt;/<span class="hljs-selector-tag">div</span>&gt;<br>&lt;/<span class="hljs-selector-tag">body</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b39c456c2c5f49f2a3ad2e4029f4c170~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload alt="image.png"></p>
+<p>从效果上看，因为两个 div 元素都处于同一个 BFC 容器 (这里指 body 元素) ，所以第一个 div 的下边距和第二个 div 的上边距发生了重叠，所以两个盒子之间距离只有 50px（刚好一个正方形的高度），而不是 100px（两个正方形的高度）。</p>
+<p>首先这不是 CSS 的 bug，我们可以理解为一种规范，<strong>如果想要避免外边距的重叠，可以将其放在不同的 BFC 容器中。</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">&lt;div <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">container</span>&quot;&gt;<br>    &lt;<span class="hljs-symbol">div</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">child</span>&quot;&gt;&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;<span class="hljs-symbol">div</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">container</span>&quot;&gt;<br>    &lt;<span class="hljs-symbol">div</span> <span class="hljs-symbol">class</span>=&quot;<span class="hljs-symbol">child</span>&quot;&gt;&lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;/<span class="hljs-symbol">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>    <span class="hljs-attribute">overflow</span>: hidden;<br>&#125;<br><br><span class="hljs-selector-class">.child</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">50px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">50px</span>;<br>    <span class="hljs-attribute">background</span>: pink;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">50px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这时候，两个盒子边距就变成了 100px</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fc7a233cf34c4a21893c50c088051438~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload alt="image.png"><br><br></br><br><br></br></p>
+<p><strong>2. 清除浮动</strong></p>
+<p>我们都知道，浮动的元素会脱离普通文档流，来看下面一个例子</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">  <span class="hljs-selector-class">.container</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#000</span>;</span><br><span class="language-css">  &#125;</span><br><span class="language-css">  </span><br><span class="language-css">  <span class="hljs-selector-class">.child</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">float</span>: left;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">background</span>: pink;</span><br><span class="language-css">  &#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8b208792aaa2418eaefe4fc562e8eef8~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload alt="image.png"></p>
+<p>样例渲染异常的解释：由于容器内元素浮动，脱离了文档流，所以就只有外面容器的 2px 边距高度。</p>
+<p><strong>即方块没有如期将容器撑开</strong><br><br></br></p>
+<h3 id="在这里问大家一个问题：我们在什么场景下会用到浮动呢？"><a href="#在这里问大家一个问题：我们在什么场景下会用到浮动呢？" class="headerlink" title="在这里问大家一个问题：我们在什么场景下会用到浮动呢？"></a>在这里问大家一个问题：我们在什么场景下会用到浮动呢？</h3><p><strong>毫无疑问，就是想用来布局定位的时候啊！</strong></p>
+<p>有了上面的这个回答，我们才知道为什么要清除浮动，因为我们只想使用浮动对页面进行我们所需的布局，但又不想他影响到上下文元素，即<strong>不影响页面的普通流</strong>，那么下面便讲讲这种方法如何实现吧。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>对于上面的例子，如果想内容在设置了浮动的条件下，还能撑开容器高度，那么可以通过触发容器的 BFC，那么容器将会包裹着浮动元素。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">  <span class="hljs-selector-class">.container</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">500px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#000</span>;</span><br><span class="language-css">    <span class="hljs-attribute">overflow</span>: hidden;</span><br><span class="language-css">  &#125;</span><br><span class="language-css">  </span><br><span class="language-css">  <span class="hljs-selector-class">.child</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">float</span>: left;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">background</span>: pink;</span><br><span class="language-css">  &#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;child&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>效果如图：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d94a04adec074e12b1a49b6c2a4fd2c3~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload alt="image.png"><br><br></br><br></br><br><strong>3. BFC 可以阻止元素被浮动元素覆盖</strong></p>
+<p>先来看一个文字环绕效果：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">  <span class="hljs-selector-class">.left</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">float</span>: left;</span><br><span class="language-css">    <span class="hljs-attribute">background</span>: green;</span><br><span class="language-css">  &#125;</span><br><span class="language-css"></span><br><span class="language-css">  <span class="hljs-selector-class">.none</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">background</span>: grey;</span><br><span class="language-css">  &#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>    <br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span>左浮动元素<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;none&quot;</span>&gt;</span><br>  没设置浮动的元素，我的文字由于环绕没被覆盖，但实际方块被覆盖了<br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/61eb626c06884dc2a9eb5ea99a8c312a~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload alt="image.png"></p>
+<p>这时候其实第二个元素有部分被浮动元素所覆盖，(但是文本信息不会被浮动元素所覆盖) 如果想避免元素被覆盖，可以触发第二个元素的 BFC 特性，在第二个元素中加入 <strong>overflow: hidden</strong>，就会变成：</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/34e4a84528ed47c89614bc02194815be~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading2.gif" lazyload alt="image.png"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">  <span class="hljs-selector-class">.left</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">float</span>: left;</span><br><span class="language-css">    <span class="hljs-attribute">background</span>: green;</span><br><span class="language-css">  &#125;</span><br><span class="language-css"></span><br><span class="language-css">  <span class="hljs-selector-class">.none</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">background</span>: grey;</span><br><span class="language-css">    <span class="hljs-attribute">overflow</span>: hidden;</span><br><span class="language-css">  &#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br>    <br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span>左浮动元素<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;none&quot;</span>&gt;</span><br>  没设置浮动的元素，我的文字由于环绕没被覆盖，但实际方块被覆盖了<br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>这个方法还可以用来实现两列自适应布局，效果不错，这时候左边的宽度固定，右边的内容自适应宽度(去掉上面右边内容的宽度即可)。</strong></p>
+</blockquote>
+<p><br></br></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>我是 Smoothzjc，致力于产出更多且不仅限于前端方面的优质文章</p>
+<p>写作不易，<strong>「点赞」+「收藏」+「转发」</strong> 谢谢支持❤</p>
+<h2 id="往期推荐"><a href="#往期推荐" class="headerlink" title="往期推荐"></a>往期推荐</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7065882915791437855">《都2022年了还不考虑来学React Hook吗？6k字带你从入门到吃透》</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7068256695620730910">《一份不可多得的 Webpack 学习指南（1万字长文带你入门 Webpack 并掌握常用的进阶配置）》</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7064515729298554887">《Github + hexo 实现自己的个人博客、配置主题（超详细）》</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7064024606276845581">《10分钟让你彻底理解如何配置子域名来部署多个项目》</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7064005333437382670">《一文理解配置伪静态解决 部署项目刷新页面404问题</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7060803746560737293">《带你3分钟掌握常见的水平垂直居中面试题》</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7056073706564648968">《React实战：使用Antd+EMOJIALL 实现emoji表情符号的输入》</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6993934486954049550">《【建议收藏】长达万字的git常用指令总结！！！适合小白及在工作中想要对git基本指令有所了解的人群》</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6993350461172482078">《浅谈javascript的原型和原型链(新手懵懂想学会原型链？看这篇文章就足够啦！！！)》</a><a target="_blank" rel="noopener" href="https://juejin.cn/post/6993350461172482078">https://juejin.cn/post/6993350461172482078</a>)</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8A%9B%E6%89%A3/" class="category-chain-item">力扣</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8A%9B%E6%89%A3/">#力扣</a>
+      
+        <a href="/tags/LeetCode/">#LeetCode</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <p class="note note-warning" style="font-weight: 600">
+    作者：Smooth<br /><br />
+    文章链接：http://example.com/2022/03/16/%E3%80%90offer%20%E6%94%B6%E5%89%B2%E6%9C%BA%E4%B9%8B%20CSS%20%E5%9B%9E%E9%A1%BE%E7%B3%BB%E5%88%97%E3%80%91%E8%AF%B7%E4%BD%A0%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF%20BFC%20%EF%BC%9F%E4%BB%96%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/<br /><br />
+    版权说明：本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！
+  </p>
+  <br />
+  <!-- <div class="license-box my-3">
+    <div class="license-title">
+      <div>【offer 收割机之 CSS 回顾系列】请你解释一下什么是 BFC ？他的应用场景有哪些？</div>
+      <div>http://example.com/2022/03/16/%E3%80%90offer%20%E6%94%B6%E5%89%B2%E6%9C%BA%E4%B9%8B%20CSS%20%E5%9B%9E%E9%A1%BE%E7%B3%BB%E5%88%97%E3%80%91%E8%AF%B7%E4%BD%A0%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF%20BFC%20%EF%BC%9F%E4%BB%96%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Smooth</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年3月16日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div> -->
+
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/17/%E3%80%90offer%20%E6%94%B6%E5%89%B2%E6%9C%BA%E4%B9%8B%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%E3%80%91%EF%BC%88%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F%EF%BC%89%E4%BB%8E%20URL%20%E8%BE%93%E5%85%A5%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%8E%B0%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/" title="【offer 收割机之面试必备】（建议收藏）从 URL 输入到页面展现的全过程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【offer 收割机之面试必备】（建议收藏）从 URL 输入到页面展现的全过程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/15/%E3%80%90%E5%B8%A6%E4%BD%A0%E9%87%8D%E5%88%B7%E5%89%91%E6%8C%87%20Offer%20%E7%B3%BB%E5%88%97%E3%80%91%E7%AC%AC%2019%20%E5%A4%A9%20%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%AD%E7%AD%89%EF%BC%89%E4%B8%89%E9%A2%98%E9%A2%98%E8%A7%A3%E4%B8%80%E8%A7%88/" title="【带你重刷剑指 Offer 系列】第 19 天 搜索与回溯算法（中等）三题题解一览">
+                        <span class="hidden-mobile">【带你重刷剑指 Offer 系列】第 19 天 搜索与回溯算法（中等）三题题解一览</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.staticfile.org/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"GyO1gYwBSAE9WDPDP832Neqt-gzGzoHsz","appKey":"AAsGHr7sWjnMsyKVxj62V6IJ","path":"window.location.pathname","placeholder":"请不要奢侈你的评论ヾﾉ≧∀≦)o","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://juejin.cn/user/1302297507801358" target="_blank" rel="nofollow noopener"><span>掘金 | </span></a> <a href="https://i.csdn.net/#/user-center/profile" target="_blank" rel="nofollow noopener"><span>CSDN</span></a> 
+      <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('02/10/2022 8:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = "🚀 &nbsp本站已安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2021153967"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading2.gif" lazyload alt="police-icon"/>
+          
+          <span>粤ICP备2021153967号-1</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var title = subtitle.title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://cdn.staticfile.org/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/jingtaisidai.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+</html>
