@@ -16,23 +16,24 @@
   <meta name="author" content="Smooth">
   <meta name="keywords" content="">
   
-    <meta name="description" content="为了让更新过程变得可控，React16 采用的是 Fiber Reconciler ，核心思想是时间分片的思想，将一个大任务分解成多个小任务，当执行完每个小任务的更新时，能将控制权交还给浏览器负责">
+    <meta name="description" content="本篇文章将会带你重新回顾前端这一职位的本质">
 <meta property="og:type" content="article">
-<meta property="og:title" content="通过 React15 ~ 17 的优化迭代来简单聊聊 Fiber">
-<meta property="og:url" content="http://example.com/2022/03/20/%E9%80%9A%E8%BF%87%20React15%20~%2017%20%E7%9A%84%E4%BC%98%E5%8C%96%E8%BF%AD%E4%BB%A3%E6%9D%A5%E7%AE%80%E5%8D%95%E8%81%8A%E8%81%8A%20Fiber/index.html">
+<meta property="og:title" content="到底什么是前端？当前主流趋势是否有违前端一词出现时的原本意愿？">
+<meta property="og:url" content="http://example.com/2022/04/04/%E5%88%B0%E5%BA%95%E4%BB%80%E4%B9%88%E6%98%AF%E5%89%8D%E7%AB%AF%EF%BC%9F%E5%BD%93%E5%89%8D%E4%B8%BB%E6%B5%81%E8%B6%8B%E5%8A%BF%E6%98%AF%E5%90%A6%E6%9C%89%E8%BF%9D%E5%89%8D%E7%AB%AF%E4%B8%80%E8%AF%8D%E5%87%BA%E7%8E%B0%E6%97%B6%E7%9A%84%E5%8E%9F%E6%9C%AC%E6%84%8F%E6%84%BF%EF%BC%9F/index.html">
 <meta property="og:site_name" content="Smooth个人博客">
-<meta property="og:description" content="为了让更新过程变得可控，React16 采用的是 Fiber Reconciler ，核心思想是时间分片的思想，将一个大任务分解成多个小任务，当执行完每个小任务的更新时，能将控制权交还给浏览器负责">
+<meta property="og:description" content="本篇文章将会带你重新回顾前端这一职位的本质">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/Fiber.jpg">
-<meta property="article:published_time" content="2022-03-20T03:54:29.000Z">
-<meta property="article:modified_time" content="2022-03-22T11:22:03.149Z">
+<meta property="og:image" content="http://example.com/img/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C.jpg">
+<meta property="article:published_time" content="2022-04-04T03:00:29.000Z">
+<meta property="article:modified_time" content="2022-04-04T03:27:10.307Z">
 <meta property="article:author" content="Smooth">
-<meta property="article:tag" content="React Fiber">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="用户体验">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/Fiber.jpg">
+<meta name="twitter:image" content="http://example.com/img/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C.jpg">
   
   
-  <title>通过 React15 ~ 17 的优化迭代来简单聊聊 Fiber - Smooth个人博客</title>
+  <title>到底什么是前端？当前主流趋势是否有违前端一词出现时的原本意愿？ - Smooth个人博客</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,12 +196,12 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/Fiber.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
-          <span id="subtitle" title="通过 React15 ~ 17 的优化迭代来简单聊聊 Fiber">
+          <span id="subtitle" title="到底什么是前端？当前主流趋势是否有违前端一词出现时的原本意愿？">
             
           </span>
         </div>
@@ -217,8 +218,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-03-20 11:54" pubdate>
-          2022年3月20日 中午
+        <time datetime="2022-04-04 11:00" pubdate>
+          2022年4月4日 上午
         </time>
       </span>
     
@@ -229,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          4.7k 字
         
       </span>
     
@@ -240,7 +241,7 @@
         
         
         
-          27 分钟
+          40 分钟
         
       </span>
     
@@ -286,12 +287,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">通过 React15 ~ 17 的优化迭代来简单聊聊 Fiber</h1>
+            <h1 style="display: none">到底什么是前端？当前主流趋势是否有违前端一词出现时的原本意愿？</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年3月22日 晚上
+                    本文最后更新于：2022年4月4日 上午
                   
                 
               </p>
@@ -299,79 +300,129 @@
             <div class="markdown-body">
               
               <blockquote>
-<p><strong><strong>🧨 大家好，我是 Smooth，一名大二的 SCAU 前端er <br /> 🏆 本篇文章是我在复习 Fiber 时，查看了多篇文章之后，结合成的精华<br /> 🙌 如文章有误，恳请评论区指正，谢谢！<br /> ❤ 写作不易，「点赞」+「收藏」+「转发」 谢谢支持！</strong></strong></p>
+<p><strong>🧨 大家好，我是 Smooth，一名大二的 SCAU 前端er <br /> 🏆 本篇文章是我在看完张鑫旭大佬文章后以及结合自己平时开发过程中的一些体会而做出的一篇总结<br /> ❤ 写作不易，肯请「转发」， 谢谢支持！</strong></p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/editor/drafts/7077477610871062536">原文章链接</a></p>
-<h2 id="React渲染页面的两个阶段"><a href="#React渲染页面的两个阶段" class="headerlink" title="React渲染页面的两个阶段"></a>React渲染页面的两个阶段</h2><p>首先，明确两个阶段，有助于后面对文章的理解</p>
-<ol>
-<li>调度阶段（reconciliation）：在这个阶段 React 会更新数据生成新的 Virtual DOM，然后通过Diff算法，快速找出需要更新的元素，放到更新队列中去，<strong>得到新的更新队列</strong>。</li>
-<li>渲染阶段（commit）：这个阶段 React 会遍历更新队列，<strong>将其所有的变更一次性更新到DOM上</strong>。</li>
-</ol>
-<h3 id="React-15-架构"><a href="#React-15-架构" class="headerlink" title="React 15 架构"></a>React 15 架构</h3><p>React15架构可以分为两层：</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7082577690809040927">原文章链接</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>其实想写这篇文章挺久的了，作为一个前端工程师，前端的本质到底是什么？</p>
 <ul>
-<li>Reconciler（协调器）—— 负责找出变化的组件；</li>
-<li>Renderer（渲染器）—— 负责将变化的组件渲染到页面上；</li>
+<li>是一直框架 + 工程化 的开发流程吗？</li>
+<li>是只会使用 Vue 或 React 等等的主流框架开发出一个个项目并创造营收吗？</li>
+<li>是每天都沉浸在写不完的，不断迭代的一个个业务场景里吗？</li>
 </ul>
-<p>  在React15及以前，Reconciler采用递归的方式创建虚拟DOM，<strong>递归过程是不能中断的</strong>。如果组件树的层级很深，递归会占用线程很多时间，递归更新时间超过了16ms，用户交互就会卡顿。</p>
-<p>  为了解决这个问题，React16将递归的无法中断的更新重构为<strong>异步的可中断更新</strong>，由于曾经用于递归的虚拟DOM数据结构已经无法满足需要。于是，全新的 <strong>Fiber 架构</strong>应运而生。</p>
-<h3 id="React-16-架构"><a href="#React-16-架构" class="headerlink" title="React 16 架构"></a>React 16 架构</h3><p>  为了解决同步更新长时间占用线程导致页面卡顿的问题，也为了探索运行时优化的更多可能，React开始重构并一直持续至今。重构的目标是实现Concurrent Mode（并发模式）。</p>
-<p>  从v15到v16，React团队花了两年时间将源码架构中的Stack Reconciler重构为Fiber Reconciler。</p>
-<p>React16架构可以分为三层：</p>
-<ul>
-<li>Scheduler（调度器）—— <strong>调度任务的优先级</strong>，高优任务优先进入Reconciler；</li>
-<li>Reconciler（协调器）—— 负责找出变化的组件：<strong>更新工作从递归变成了可以中断的循环过程。Reconciler内部采用了Fiber的架构</strong>；</li>
-<li>Renderer（渲染器）—— 负责将变化的组件渲染到页面上。</li>
-</ul>
-<h3 id="React-17-优化"><a href="#React-17-优化" class="headerlink" title="React 17 优化"></a>React 17 优化</h3><p>  React16的<strong>expirationTimes模型</strong>只能区分是否<code>&gt;=expirationTimes</code>决定节点是否更新。React17的<strong>lanes模型</strong>可以选定一个更新区间，并且动态的向区间中增减优先级，可以处理更细粒度的更新。</p>
+<p>首先，不可否认的是，具备 Vue 或 React 这些前端主流框架，Webpack 或 Vite 等等的打包工具这些前端开发经验是必须的，是吃饭的本钱，只不过随着每天不断醉心于写业务逻辑，是否渐渐忘了前端的本质到底是什么了？</p>
+<p>下面，我想简单谈谈我对于前端的一个理解</p>
+<h2 id="什么是前端？"><a href="#什么是前端？" class="headerlink" title="什么是前端？"></a>什么是前端？</h2><p>我个人理解，前端的本质应该是设计出符合用户体验的一个个产品，联合后端等等一起</p>
 <blockquote>
-<p>Lane用<strong>二进制位</strong>表示任务的优先级，方便优先级的计算（位运算），不同优先级占用不同位置的“<strong>赛道</strong>”，而且存在批的概念，优先级越低，“赛道”越多。高优先级打断低优先级，新建的任务需要赋予什么优先级等问题都是Lane所要解决的问题。</p>
+<p><strong>即所有开发都是为了用户服务，不然开发出一个产品，由于交互不合理或不美观或加载慢等等原因导致逐渐丧失用户，那得不偿失了。</strong></p>
 </blockquote>
-<p>Concurrent Mode的目的是实现一套可中断&#x2F;恢复的更新机制。其由两部分组成：</p>
+<p>下面，简单罗列一下<strong>什么样的产品能称作是一个用户体验好的产品</strong></p>
+<p>1、友好的视觉配色</p>
 <ul>
-<li>一套协程架构：Fiber Reconciler</li>
-<li>基于协程架构的启发式更新算法：控制协程架构工作方式的算法</li>
+<li>至少不要压抑（轻快、神秘、高端【风格】）</li>
+<li>避免凌乱（统一：字体、配色、模块组件）</li>
+<li>在视觉上引导、聚焦界面中的重要信息（视觉层次）</li>
+<li>注重点、线、面的配合（饱满、友好）</li>
+<li>准确的图标、色彩表达</li>
 </ul>
-<h2 id="什么是-Fiber"><a href="#什么是-Fiber" class="headerlink" title="什么是 Fiber"></a>什么是 Fiber</h2><p>  Fiber 的英文含义是“纤维”，它是比线程（Thread）更细的线，比线程（Thread）控制得更精密的执行模型。在广义计算机科学概念中，Fiber 又是一种协作的（Cooperative）编程模型（协程），帮助开发者用一种【既模块化又协作化】的方式来编排代码。</p>
-<p>  在 React 中，<strong>Fiber 就是 React 16 实现的一套新的更新机制，让 React 的更新过程变得可控，避免了之前采用递归需要一气呵成影响性能的做法</strong>。</p>
-<h3 id="React-Fiber-中的时间分片"><a href="#React-Fiber-中的时间分片" class="headerlink" title="React Fiber 中的时间分片"></a>React Fiber 中的时间分片</h3><p>  把一个<strong>耗时长的任务分成很多小片</strong>，每一个小片的运行时间很短，虽然总时间依然很长，但是在每个小片执行完之后，都<strong>给其他任务一个执行的机会</strong>，这样唯一的线程就不会被独占，其他任务依然有运行的机会。</p>
-<p>  React Fiber 把更新过程<strong>碎片化</strong>，每执行完一段更新过程，就把控制权交还给 React 负责任务协调的模块，看看有没有其他紧急任务要做，如果没有就继续去更新，如果有紧急任务，那就去做紧急任务。</p>
-<h3 id="Fiber-Reconciler"><a href="#Fiber-Reconciler" class="headerlink" title="Fiber Reconciler"></a>Fiber Reconciler</h3><h4 id="链表结构"><a href="#链表结构" class="headerlink" title="链表结构"></a>链表结构</h4><p>  在 React Fiber 中<strong>用链表遍历的方式替代了 React 16 之前的栈递归方案</strong>。在 React 16 中使用了大量的链表。</p>
+<p>2、友好的询问时机及语句</p>
 <ul>
-<li>使用多向链表的形式替代了原来的树结构；</li>
+<li>通俗易懂的语言传递对于撤销成本高等的操作</li>
+<li>合时机的询问用户</li>
+<li>尽可能的让用户知道计算机在做些什么</li>
+<li>尽可能的让用户知道如此将会怎样</li>
 </ul>
-<p>链表相比顺序结构数据格式的<strong>好处</strong>就是：</p>
-<ol>
-<li>操作更高效，比如顺序调整、删除，只需要改变节点的指针指向就好了。</li>
-<li>不仅可以根据当前节点找到下一个节点，在多向链表中，还可以找到他的父节点或者兄弟节点。</li>
+<p>3、舒服而优雅的交互</p>
+<ul>
+<li>让等待不那么焦急（功能↑  等待乐趣、视觉感受）</li>
+<li>切换、弹出尽可能的优雅（划入、淡出等）</li>
+<li>大多数软件交互需求是不用跟用户沟通的</li>
+</ul>
+<p>4、清晰易懂的操作逻辑</p>
+<ul>
+<li>明确的鼠标类型（移动、点击、默认、禁止……）</li>
+<li>明确的触发行为（经过、按下、拖动）</li>
+<li>简单并且完整的操作逻辑</li>
+<li>尽可能的让操作可逆</li>
+<li>尽可能的满足用户个性化的需求</li>
+</ul>
+<ol start="5">
+<li>异常处理优雅</li>
 </ol>
-<p>但链表也不是完美的，<strong>缺点</strong>就是：</p>
+<ul>
+<li><p>如果用户突然因为网络不好时，也要保证页面的一些主要功能能够加载出来<br>（其实这里更多的是涉及到性能优化方面了，在网络不好时如果更快更全地加载出页面主要内容，也要根据元素重要程度不同而分配好加载的先后顺序）</p>
+</li>
+<li><p>例如 hover 实现的下拉列表，如果网速差导致页面渲染出现了卡顿，而 hover 是鼠标放上去才会给元素添加样式，因此很容易导致加载不出来的问题，所以必须得给 hover 触发的事件，添加 click 事件兜底机制，确保点击相关元素也能弹出。</p>
+</li>
+</ul>
+<h2 id="用户体验好的例子"><a href="#用户体验好的例子" class="headerlink" title="用户体验好的例子"></a>用户体验好的例子</h2><p>这里的话引用一下 <strong>@张鑫旭</strong> 大佬对于前端用户体验方面的看法</p>
 <ol>
-<li>比顺序结构数据更占用空间，因为每个节点对象还保存有指向下一个对象的指针。</li>
-<li>不能自由读取，必须找到他的上一个节点。</li>
+<li><p><strong>所有的可点击交互均要有按下的反馈</strong>。大家如果仔细观察手机操作系统，无论是 iOS 还是 Android，所有的列表，所有的按钮点击的时候一定会有反馈，无论是颜色变化，还是震动反馈，按下的时候一定是有反应的，这是基本的交互常识，否则用户很容易迷茫，点击了没反应，不知道是不是没有功能，还是设备死掉了，反应慢。</p>
+</li>
+<li><p><strong>点击区域要大，这个在移动端非常重要</strong>。但是很多前端在实现的时候完全就是看心情，点击区域不规整，或者面积很小，<strong>只顾及视觉上的还原效果</strong>，而<strong>忽略真实的点击反馈区域</strong>。</p>
+</li>
 </ol>
-<p>  React 用<strong>空间换时间</strong>，更高效的操作可以方便根据优先级进行操作。同时<strong>可以根据当前节点找到其他节点，在下面提到的挂起和恢复过程中起到了关键作用</strong>。</p>
-<h2 id="你对-React-Fiber-的了解？为什么要使用-Fiber？"><a href="#你对-React-Fiber-的了解？为什么要使用-Fiber？" class="headerlink" title="你对 React Fiber 的了解？为什么要使用 Fiber？"></a>你对 React Fiber 的了解？为什么要使用 Fiber？</h2><p><strong>因此，这个问题可以如下回答</strong></p>
-<p>对于 Fiber，首先我先说一下为什么要使用他，首先 React 更新视图分为<strong>两个大阶段</strong>，第一个是基于 Reconciler 数据结构的调度阶段，第二个是渲染阶段。<strong>在 React15 及之前的版本</strong>，调度阶段采用的是 Stack Reconciler，即使用的是栈的数据结构，在渲染阶段采用的是递归进行更新。由于 React 将<strong>视图看作</strong>是一个个函数执行的结果，而每个页面又包含多个视图，会让栈中的函数层级非常深，而递归得一次性将这些函数运行完，容易造成 16.6ms 内<strong>无法及时执行完这些渲染更新</strong>，而无法在下一帧及时将控制权交还给渲染进程，无法及时绘制下一帧造成浏览器页面卡顿。</p>
-<p>为了让更新过程变得可控，React16 采用的是 Fiber Reconciler ，核心思想是时间分片的思想，将一个大任务分解成多个小任务，当执行完每个小任务的更新时，能将控制权<strong>交还给浏览器负责任务调度的模块</strong>，这样可以在有紧急任务时进行执行，而不用“一心一意”执行更新。Fiber Reconciler 采用的是链表结构，通过指针可以将父节点、兄弟节点、子结点连接起来，好处是可以简化更新过程，<strong>变换一下链表指针就行</strong>，劣势是得知道某个结点的上一个结点才能进行更新，是一个典型的空间换时间的方法。</p>
-<p>对于 React17，由于 React16 只能知道某个结点是否要更新，但 React17 能通过指定<strong>某个更新区间并设置优先级</strong>进行更新，能更加准确的将 React 更新过程分为三个阶段，第一是分配优先级阶段，第二个调度阶段，第三个是渲染阶段，让 React 可以处理更细粒度的更新。</p>
-<p><strong>总结来说就是，Fiber 是 React16 实现的一套新的更新机制，让 React 的更新过程变得可控，避免了之前采用递归需要一气呵成影响性能的做法</strong><br><br></br></p>
+<p>比方说有时使用手机浏览网页或使用某个 App，在一些图标按钮处，最终的点击区域高度只有 18px，虽然功能 OK，测试同事也测不出来，但是如果用户在走路，或者手上拿了其他东西，往往就一次点不中，<strong>因为点击区域太小</strong>。</p>
+<ol start="3">
+<li><p>忽视边界异常处理，例如，低网速、无数据、脚本出错、闪退就不考虑，<strong>只关注理想状态下实现</strong>，还自我感觉良好。所以，一旦网速慢了，就会有长时间的白屏，这个其实都是可以通过简单的方式优化的。</p>
+</li>
+<li><p>忽视 HTML 语义和行为在用户体验这块的意义，以至于什么都是 <code>div + JS</code> ，按钮是 <code>div</code>，<strong>链接跳转</strong>也是 <code>div + JS</code>，而不是 <code>&lt;a&gt;</code> 元素 + href，这样可以保证就算 JS 加载慢，<strong>JS 异常，产品功能也不会有问题。</strong></p>
+</li>
+<li><p>当然，还有很多其他的，装饰图片使用 <code>&lt;img&gt;</code> 元素，hover 下拉列表没有 click 事件兜底，导致触屏设备下难以使用等问题。</p>
+</li>
+</ol>
+<p>以及最直观的，就是用户体验方向的前端开发越来越难招。</p>
+<h2 id="是什么原因造成了以上现象逐渐成为主流？"><a href="#是什么原因造成了以上现象逐渐成为主流？" class="headerlink" title="是什么原因造成了以上现象逐渐成为主流？"></a>是什么原因造成了以上现象逐渐成为主流？</h2><p>总结为下面 4 点原因。</p>
+<h3 id="1-前端发展"><a href="#1-前端发展" class="headerlink" title="1. 前端发展"></a>1. 前端发展</h3><p>在之前，由于前端涉及的领域只是单纯的写一个页面样式以及交互需求，因此用户体验占据很大一块，自然关注多，学习多。</p>
+<p>但是现在讲大前端，前端的触角不仅是 Web 开发，还包括小程序、快应用、还有原生端开发，桌面端开发等，这些项目开发上手，背后肯定要懂一些工程化的东西，需要懂 Node 相关知识等。</p>
+<p>内容多，庞杂，需要学习的很多，就像这张前端知识图谱所展示的，因为内容太多，我一分为二展示了，<strong>用户体验相关知识自然就慢慢边缘化了。</strong></p>
+<p>框架与工程化给我们的开发带来的便捷，开发人员<strong>无需关注过多的细节</strong>，就能实现合格的线上产品，但是这种开发体验是<strong>牺牲部分用户体验换来的</strong>，比方说 CSS 自动补全所有私有前缀，默认是连 IE 浏览器一起的，对于移动端项目，这就是冗余代码，虽然可以设置，但太多的项目就这样冗余着，可以理解，没必要，放着没事，去掉万一有问题呢。<strong>（屎山的由来）</strong></p>
+<p>受众多，话语权大，带动大环境往这个方向走，技术栈越来越上层，<strong>前端与这个职业原本的定位越走越远</strong>。</p>
+<h3 id="2-设备的发展"><a href="#2-设备的发展" class="headerlink" title="2. 设备的发展"></a>2. 设备的发展</h3><p><strong>现在的软件和硬件都已经非常强悍了</strong>，VS Code 都可以在浏览器上跑了，那些通常的 Web 应用更是自然不在话下，所以，就算代码差、实现啰嗦，资源开销大，产品也能跑得顺畅，没必要像过去一样为了<strong>用户体验抠性能</strong>。</p>
+<p>基建的发展也使得很多用户体验相关的技术变得不那么重要。例如，当年流量值钱的年代，前端开发产品，会使用一倍图，两倍图。WiFi 模式下大图，4G 下低清图。</p>
+<p>现在没有那么多套路了，都是无限流量，直接 3 倍图走起，反正公司也不在意，用户也不会投诉，我开发简单，维护方便，何乐不为。</p>
+<p>这也使得用户体验密切相关的前端技术不受追捧，无人问津，<strong>比如说兼容性很好、省流量一绝的元素</strong>。</p>
 <blockquote>
-<p>版权说明：文章参考自 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6984949525928476703">React Fiber很难？六个问题助你理解 React Fiber</a></p>
+<p><strong>比如说图片，什么业务场景用什么样格式的图片，这里面都大有讲究。</strong></p>
 </blockquote>
+<h3 id="3-互联网"><a href="#3-互联网" class="headerlink" title="3. 互联网 +"></a>3. 互联网 +</h3><p>也就是互联网和传统行业的结合，这个大趋势造就了大量的前端岗位，但是这些岗位基本上都是乙方工作模式，也就是所谓的外包。</p>
+<p>公司收益是<strong>订单量</strong>，第一要求，deadline，第二要求<strong>功能完好，服务稳定</strong>，至于产品体验，公司当然希望好一点，但是往往有心无力。毕竟体验即使很一般，<strong>也不影响赚钱</strong>。</p>
+<p>所以，对于这一类广泛从业的前端开发人员，从工作上就不需要你关注比较细节的用户体验知识，降低了整个行业对用户体验的关注。</p>
+<h3 id="4-用户体验本身特性"><a href="#4-用户体验本身特性" class="headerlink" title="4. 用户体验本身特性"></a>4. 用户体验本身特性</h3><p>通常 1-2 个用户体验变好是没有任何意义的，需要整体，上百个，上千个细节变好，才能产生质变的效果。</p>
+<p><strong>这是一个成本高，且漫长的过程，其收益往往不可见，不直接相关，对于大多数财力人力紧张的企业就缺少支持的动力。</strong></p>
+<p>用户体验优化成果无法量化、见效慢，在晋升的时候吃亏，员工自己就不太乐意做，所以都去做性能优化。因为有数据，都是造轮子，而不是去优化轮子。就是这个道理。</p>
+<h2 id="如何冲出上面提到的主流趋势呢？"><a href="#如何冲出上面提到的主流趋势呢？" class="headerlink" title="如何冲出上面提到的主流趋势呢？"></a>如何冲出上面提到的主流趋势呢？</h2><h3 id="1-企业层面，把重视用户体验作为公司的文化"><a href="#1-企业层面，把重视用户体验作为公司的文化" class="headerlink" title="1. 企业层面，把重视用户体验作为公司的文化"></a>1. 企业层面，把重视用户体验作为公司的文化</h3><p><strong>注意，不是喊口号，也不是贴标语，而是实实在在的与绩效和晋升挂钩。</strong></p>
+<p>也就是，员工花了大量的时间和精力做了很多用户体验相关的工作，需要得到认可，需要和造轮子的同事、引入热门流行技术的同事有同等的晋升机会。</p>
+<p>否则，没用的，全靠技术人员自身的追求，如果公司要想产品体验好，但是公司并没有这样的基因，唯一的办法是招优秀的人，舍得给钱。</p>
+<h3 id="2-需要国家层面出手"><a href="#2-需要国家层面出手" class="headerlink" title="2. 需要国家层面出手"></a>2. 需要国家层面出手</h3><p>比方说去年年底工信部颁布的适老化规定，无障碍访问支持，点名了一些 App 要做相关体验的支持，这点非常好。</p>
+<p>国家不出面，让企业自发做这些事情，难的，因为<strong>针对小众人群和边界场景的开发投入是一件投入产出比</strong>，或者说商业价值这块，<strong>不划算</strong>的事情，企业自身是缺乏这样的动力的，毕竟<strong>商业是逐利的</strong>，需要国家层面出手。</p>
+<p>以后，老年人足够多的时候，我认为是有可能立法强制要求做<strong>无障碍支持</strong>的。</p>
+<h3 id="3-等，等待的等"><a href="#3-等，等待的等" class="headerlink" title="3. 等，等待的等"></a>3. 等，等待的等</h3><p>足够内卷，行业不再高速发展，工匠精神就有了，因为这个时候<strong>用户体验会成为核心竞争力</strong>。这个应该很好理解，在一个充分竞争的、没有垄断行业，<strong>用户最终选择的，一定是用户体验最好的</strong>，甚至可以为了这个用户体验，高度溢价。</p>
+<h3 id="4-大厂带动，社区觉醒，通过社区的力量进行传播"><a href="#4-大厂带动，社区觉醒，通过社区的力量进行传播" class="headerlink" title="4. 大厂带动，社区觉醒，通过社区的力量进行传播"></a>4. 大厂带动，社区觉醒，通过社区的力量进行传播</h3><p>在这件事情上，个人的力量是极其有限的。个人通过文章、分享苦口婆心，谆谆教导，用户体验很重要，希望提高整个行业对用户体验的重视，希望整个前端行业百花齐放，这么多年实践下来，<strong>虽然影响了一部分人，但是并没有预想的那样发展。</strong></p>
+<p>一是人轻言微，个体无法左右行业趋势的发展，二是开发者也是人，<strong>也是逐利的</strong>，如果大环境就是这样，即公司不支持，团队不认可，<strong>对自己晋升也没什么帮助</strong>，人人都浮躁，就算一时热血沸腾，很快也会随大流的。</p>
+<p>所以，还需要大厂带头，需要社区的力量。</p>
+<p>因为很多中小企业的技术选型决策，产品思路，业务模式<strong>都会参照大厂的做法</strong>，如果大厂愿意在用户体验与工程实践这块大力发声，其影响力绝对比个人要大的多。其实，现在有不少领先的企业正在做这样的事情，我觉得是非常好的。</p>
+<p>社区的力量，包括组织用户体验为主题的分享大会，对用户体验领域的文章进行活动征集等，因为<strong>很多开发人员内心的方向是不清晰的</strong>，一旦发现社区言论，或者风向越来越多往用户体验方向靠拢后，是会引起其关注和内心的觉醒的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>由于社会发展，行业发展等各种原因，游走于上层领域，当下的前端逐渐与基础和边界脱离，使得前端开发用户体验相关意识淡薄，知识缺乏成为比较普遍的现象，已经与“前端”原本的职业追求相背离。</p>
+<p>这本身不是什么问题，反而在互联网高度发展中起到了举足轻重的作用。问题在于，所带来的整个社区环境，言论氛围，会让<strong>新入行的众多前端误认为现在的基于框架和工程的开发套路就是前端</strong>，以至于得了没有 Vue 框架不会开发综合征（前端基础不扎实）。</p>
+<p>一旦当行业的高速发展停滞，产品进入到比拼用户体验一决胜负的时候，这部分的开发人员可能会面临所谓的 35 岁职业危机，因为用户体验绝对不是有意识就能做好的，是需要<strong>大量的前端技术做储备的。</strong></p>
+<p>所以，在关注功能实现的同时，多多关注技术的基础与底层，<strong>想想前端这个职业的核心竞争力是什么，未来可能会走得更加顺利。</strong></p>
 <p><br></br></p>
 <h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>我是 Smoothzjc，致力于产出更多且不仅限于前端方面的优质文章</p>
 <p>大家也可以关注我的公众号 @ <strong>Smooth前端成长记录</strong>，及时通过移动端获取到最新文章消息！</p>
 <p>写作不易，<strong>「点赞」+「收藏」+「转发」</strong> 谢谢支持❤</p>
 <h2 id="往期推荐"><a href="#往期推荐" class="headerlink" title="往期推荐"></a>往期推荐</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7065882915791437855">《都2022年了还不考虑来学React Hook吗？6k字带你从入门到吃透》</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7068256695620730910">《一份不可多得的 Webpack 学习指南（1万字长文带你入门 Webpack 并掌握常用的进阶配置）》</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7075290663998193694">《（建议收藏）从 URL 输入到页面展现的全过程》</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7077499405200261128">《通过 React15 ~ 17 的优化迭代来简单聊聊 Fiber》</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7081638674860867621">《【offer 收割机之面试必备】一篇非常全面的 从 URL 输入到页面展现的全过程 精华梳理》</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7078870853315723301">《【offer 收割机之手写系列】10分钟带你掌握原理并手写防抖与节流的立即&#x2F;非立即执行版本》</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7071052780063948837">《【offer 收割机之 CSS 回顾系列】请你解释一下什么是 BFC ？他的应用场景有哪些？》</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7064515729298554887">《Github + hexo 实现自己的个人博客、配置主题（超详细）》</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7064024606276845581">《10分钟让你彻底理解如何配置子域名来部署多个项目》</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7064005333437382670">《一文理解配置伪静态解决 部署项目刷新页面404问题</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7060803746560737293">《带你3分钟掌握常见的水平垂直居中面试题》</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6993934486954049550">《【建议收藏】长达万字的git常用指令总结！！！适合小白及在工作中想要对git基本指令有所了解的人群》</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6993350461172482078">《浅谈javascript的原型和原型链(新手懵懂想学会原型链？看这篇文章就足够啦！！！)》</a>8)</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6993350461172482078">《浅谈javascript的原型和原型链(新手懵懂想学会原型链？看这篇文章就足够啦！！！)》</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/CoqW5x9vMN87U3h5fuEoSw">张鑫旭：前端工程师应该为用户体验负责</a></p>
 
               
             </div>
@@ -389,8 +440,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/React/" class="category-chain-item">React</a>
+  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%89%8D%E7%AB%AF/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/" class="category-chain-item">用户体验</a>
+  
+  
+
   
 
       </span>
@@ -404,7 +462,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/React-Fiber/">#React Fiber</a>
+        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
+      
+        <a href="/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/">#用户体验</a>
       
     </div>
   
@@ -416,14 +476,14 @@
 
   <p class="note note-warning" style="font-weight: 600">
     作者：Smooth<br /><br />
-    文章链接：http://example.com/2022/03/20/%E9%80%9A%E8%BF%87%20React15%20~%2017%20%E7%9A%84%E4%BC%98%E5%8C%96%E8%BF%AD%E4%BB%A3%E6%9D%A5%E7%AE%80%E5%8D%95%E8%81%8A%E8%81%8A%20Fiber/<br /><br />
+    文章链接：http://example.com/2022/04/04/%E5%88%B0%E5%BA%95%E4%BB%80%E4%B9%88%E6%98%AF%E5%89%8D%E7%AB%AF%EF%BC%9F%E5%BD%93%E5%89%8D%E4%B8%BB%E6%B5%81%E8%B6%8B%E5%8A%BF%E6%98%AF%E5%90%A6%E6%9C%89%E8%BF%9D%E5%89%8D%E7%AB%AF%E4%B8%80%E8%AF%8D%E5%87%BA%E7%8E%B0%E6%97%B6%E7%9A%84%E5%8E%9F%E6%9C%AC%E6%84%8F%E6%84%BF%EF%BC%9F/<br /><br />
     版权说明：本博客所有文章除特别声明外，均采用 CC BY-SA 4.0 协议 ，转载请注明出处！
   </p>
   <br />
   <!-- <div class="license-box my-3">
     <div class="license-title">
-      <div>通过 React15 ~ 17 的优化迭代来简单聊聊 Fiber</div>
-      <div>http://example.com/2022/03/20/%E9%80%9A%E8%BF%87%20React15%20~%2017%20%E7%9A%84%E4%BC%98%E5%8C%96%E8%BF%AD%E4%BB%A3%E6%9D%A5%E7%AE%80%E5%8D%95%E8%81%8A%E8%81%8A%20Fiber/</div>
+      <div>到底什么是前端？当前主流趋势是否有违前端一词出现时的原本意愿？</div>
+      <div>http://example.com/2022/04/04/%E5%88%B0%E5%BA%95%E4%BB%80%E4%B9%88%E6%98%AF%E5%89%8D%E7%AB%AF%EF%BC%9F%E5%BD%93%E5%89%8D%E4%B8%BB%E6%B5%81%E8%B6%8B%E5%8A%BF%E6%98%AF%E5%90%A6%E6%9C%89%E8%BF%9D%E5%89%8D%E7%AB%AF%E4%B8%80%E8%AF%8D%E5%87%BA%E7%8E%B0%E6%97%B6%E7%9A%84%E5%8E%9F%E6%9C%AC%E6%84%8F%E6%84%BF%EF%BC%9F/</div>
     </div>
     <div class="license-meta">
       
@@ -435,7 +495,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年3月20日</div>
+          <div>2022年4月4日</div>
         </div>
       
       
@@ -466,18 +526,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/01/%E3%80%90offer%20%E6%94%B6%E5%89%B2%E6%9C%BA%E4%B9%8B%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%E3%80%91%E4%B8%80%E7%AF%87%E9%9D%9E%E5%B8%B8%E5%85%A8%E9%9D%A2%E7%9A%84%20%E4%BB%8E%20URL%20%E8%BE%93%E5%85%A5%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%8E%B0%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B%20%E7%B2%BE%E5%8D%8E%E6%A2%B3%E7%90%86/" title="【offer 收割机之面试必备】一篇非常全面的 从 URL 输入到页面展现的全过程 精华梳理">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【offer 收割机之面试必备】一篇非常全面的 从 URL 输入到页面展现的全过程 精华梳理</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/17/%E3%80%90offer%20%E6%94%B6%E5%89%B2%E6%9C%BA%E4%B9%8B%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%E3%80%91%EF%BC%88%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F%EF%BC%89%E4%BB%8E%20URL%20%E8%BE%93%E5%85%A5%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%8E%B0%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/" title="【offer 收割机之面试必备】（建议收藏）从 URL 输入到页面展现的全过程">
-                        <span class="hidden-mobile">【offer 收割机之面试必备】（建议收藏）从 URL 输入到页面展现的全过程</span>
+                      <a href="/2022/04/01/%E3%80%90offer%20%E6%94%B6%E5%89%B2%E6%9C%BA%E4%B9%8B%E9%9D%A2%E8%AF%95%E5%BF%85%E5%A4%87%E3%80%91%E4%B8%80%E7%AF%87%E9%9D%9E%E5%B8%B8%E5%85%A8%E9%9D%A2%E7%9A%84%20%E4%BB%8E%20URL%20%E8%BE%93%E5%85%A5%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%8E%B0%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B%20%E7%B2%BE%E5%8D%8E%E6%A2%B3%E7%90%86/" title="【offer 收割机之面试必备】一篇非常全面的 从 URL 输入到页面展现的全过程 精华梳理">
+                        <span class="hidden-mobile">【offer 收割机之面试必备】一篇非常全面的 从 URL 输入到页面展现的全过程 精华梳理</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
